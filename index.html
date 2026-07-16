@@ -172,7 +172,7 @@
     .section-line { flex: 1; height: 1px; background: var(--border); }
 
     /* ABOUT */
-    #about { background: rgba(12,19,24,0.9); }
+    #about { background: var(--bg2); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
     .about-text p { color: var(--text-muted); margin-bottom: 18px; font-size: 15.5px; line-height: 1.8; }
     .about-text p strong { color: var(--text); }
@@ -207,7 +207,7 @@
     .card-highlight { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 12px; }
 
     /* EXPERIENCE */
-    #experience { background: rgba(8,13,16,0.9); }
+    #experience { background: var(--bg); }
     .timeline { position: relative; padding-left: 28px; }
     .timeline::before {
       content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
@@ -239,7 +239,7 @@
     }
 
     /* PROJECTS */
-    #projects { background: rgba(12,19,24,0.9); }
+    #projects { background: var(--bg2); }
     .projects-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
     .project-card {
       background: var(--surface); border: 1px solid var(--border);
@@ -268,7 +268,7 @@
     .project-link-hint::after { content: '→'; }
 
     /* EDUCATION */
-    #education { background: rgba(8,13,16,0.9); }
+    #education { background: var(--bg); }
     .edu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
     .edu-degree { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px; color: var(--text); margin-bottom: 6px; }
     .edu-school { font-size: 15px; color: var(--accent); font-weight: 500; margin-bottom: 8px; }
@@ -276,7 +276,7 @@
     .edu-year { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 44px; color: transparent; -webkit-text-stroke: 1px var(--border); white-space: nowrap; text-align: right; line-height: 1.2; }
 
     /* HOBBIES */
-    #hobbies { background: rgba(12,19,24,0.9); }
+    #hobbies { background: var(--bg2); }
     .hobbies-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
     .hobby-card {
       background: var(--surface); border: 1px solid var(--border);
@@ -291,7 +291,7 @@
     .hobby-desc { font-size: 12px; color: var(--text-dim); line-height: 1.5; }
 
     /* CONTACT */
-    #contact { background: rgba(8,13,16,0.9); text-align: center; }
+    #contact { background: var(--bg); text-align: center; }
     .contact-inner { max-width: 600px; margin: 0 auto; }
     .contact-big { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(34px,6vw,60px); line-height: 1; letter-spacing: -0.04em; color: var(--text); margin-bottom: 22px; }
     .contact-big span { color: var(--accent); }
@@ -340,37 +340,6 @@
     }
     .hobby-card.expandable:hover .hobby-expand-hint { color: var(--accent); }
 
-    /* GENERIC REVEAL TRIGGER/PANEL (photos hidden until tapped) */
-    .reveal-trigger {
-      cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
-      background: var(--surface); border: 1px dashed var(--border); border-radius: 10px;
-      padding: 14px 22px; font-family: 'DM Mono', monospace; font-size: 12px;
-      color: var(--text-muted); transition: border-color .2s, color .2s, background .2s, transform .2s;
-    }
-    .reveal-trigger .reveal-icon { font-size: 16px; }
-    .reveal-trigger:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); transform: translateY(-1px); }
-    .reveal-trigger.open { border-style: solid; border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-    .reveal-panel { display: none; margin-top: 18px; animation: fadeUp .4s ease both; }
-    .reveal-panel.show { display: block; }
-    .reveal-panel.full-span { grid-column: 1 / -1; }
-
-    /* LIVE BACKGROUND — soft moving glow, fixed behind every section for continuity */
-    .bg-aurora { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-    .bg-aurora span {
-      position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.28;
-      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-      animation: auroraDrift 26s ease-in-out infinite alternate;
-    }
-    .bg-aurora span:nth-child(1) { width: 520px; height: 520px; top: -140px; left: -120px; }
-    .bg-aurora span:nth-child(2) { width: 460px; height: 460px; top: 45%; right: -160px; background: radial-gradient(circle, var(--accent2) 0%, transparent 70%); animation-delay: 7s; }
-    .bg-aurora span:nth-child(3) { width: 500px; height: 500px; bottom: -180px; left: 28%; animation-delay: 14s; }
-    @keyframes auroraDrift {
-      0% { transform: translate(0,0) scale(1); }
-      50% { transform: translate(50px,-40px) scale(1.15); }
-      100% { transform: translate(-40px,30px) scale(0.92); }
-    }
-    @media (prefers-reduced-motion: reduce) { .bg-aurora span { animation: none; } }
-
     .hobby-panel {
       display: none; margin-top: 20px;
       background: var(--surface); border: 1px solid var(--border);
@@ -410,40 +379,10 @@
       font-size: 15px; color: var(--text-muted); line-height: 1.8;
       font-style: italic; border-left: 2px solid var(--accent); padding-left: 16px;
     }
-    .photo-figure { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
-    .photo-figure img, .photo-figure video {
-      height: 220px; width: auto; max-width: 260px; min-width: 150px;
-      border-radius: 8px; object-fit: cover; border: 1px solid var(--border); display: block;
-    }
-    .photo-figure figcaption {
-      font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-dim);
-      max-width: 200px; line-height: 1.5;
-    }
-
-    /* MAP PINS */
-    .map-pin { cursor: pointer; }
-    .map-pin-pulse { animation: pinPulse 2.4s ease-out infinite; }
-    @keyframes pinPulse {
-      0% { r: 5; opacity: .5; }
-      75% { r: 16; opacity: 0; }
-      100% { r: 16; opacity: 0; }
-    }
-    .map-pin-dot { fill: #ff3d6e; stroke: #0c1319; stroke-width: 1.5; transition: r .15s; }
-    .map-pin:hover .map-pin-dot { fill: #ff6b8f; }
-    .map-legend { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 12px; font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-dim); }
-    .map-legend b { color: #ff5d85; font-weight: 400; }
-    .yt-btn {
-      display: inline-flex; align-items: center; gap: 8px; background: #ff0000; color: #fff;
-      text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px;
-      padding: 8px 16px; border-radius: 6px; transition: opacity .2s; width: fit-content;
-    }
-    .yt-btn:hover { opacity: .85; }
 
   </style>
 </head>
 <body>
-
-<div class="bg-aurora"><span></span><span></span><span></span></div>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -504,35 +443,8 @@
       <p>I'm a <strong>Biomedical Engineer</strong> graduated from <strong>Bandung Institute of Technology (ITB)</strong> — and since day one, I've believed that the best engineers never really stop being students. My world sits at the intersection of electronics, diagnostics, and AI, where the goal is always the same: make healthcare faster, smarter, and more human.</p>
       <p>From deploying <strong>73 medical devices across 32 healthcare facilities</strong>, to building a biosensor that detects cardiac troponin with <strong>100% accuracy</strong>, I care deeply about the full journey — from lab bench all the way to the patient's bedside.</p>
       <p>Outside the technical side, I've led teams, written SOPs, and managed programs spanning hundreds of people — because as any good engineer knows, the hardest system to debug is always the human one.</p>
-      <div class="reveal-trigger" id="trigger-about" onclick="toggleReveal('about')" style="margin-top:8px;">
-        Open me — a few photos of me
-      </div>
-      <div class="reveal-panel" id="reveal-about">
-        <div class="hobby-panel-photos" id="about-photos">
-          <figure class="photo-figure">
-            <img src="self.jpg" alt="Sola Gracia Ranita">
-            <figcaption>That's me — Sola 👋</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <video src="scientist.mp4" controls preload="metadata"></video>
-            <figcaption>In the lab as a Research Assistant at STEI ITB</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <img src="qc.jpg" alt="Field engineer at a warehouse">
-            <figcaption>On the job as a Field Engineer</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <img src="graduate.jpg" alt="Graduation day">
-            <figcaption>Graduation day — B.Eng. Biomedical Engineering, ITB</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <img src="gitar.jpg" alt="Playing guitar">
-            <figcaption>Off the clock, on the guitar</figcaption>
-          </figure>
-        </div>
-      </div>
     </div>
-    <div style="grid-column: 1 / -1;">
+    <div>
       <div class="skills-intro">Click a skill — see where I've applied it</div>
       <div class="skill-group">
         <div class="skill-group-title">Software & Tools</div>
@@ -542,6 +454,26 @@
           <span class="skill-tag" data-skill="arduino">Arduino</span>
           <span class="skill-tag" data-skill="autocad">AutoCAD</span>
           <span class="skill-tag" data-skill="office">Microsoft Office</span>
+          <span class="skill-tag" data-skill="colab">Google Colab</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Programming Languages</div>
+        <div class="skill-tags">
+          <span class="skill-tag" data-skill="c">C</span>
+          <span class="skill-tag" data-skill="cpp">C++</span>
+          <span class="skill-tag" data-skill="haskell">Haskell</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Libraries & Frameworks</div>
+        <div class="skill-tags">
+          <span class="skill-tag" data-skill="tensorflow">TensorFlow</span>
+          <span class="skill-tag" data-skill="pytorch">PyTorch</span>
+          <span class="skill-tag" data-skill="opencv">OpenCV</span>
+          <span class="skill-tag" data-skill="numpy">NumPy</span>
+          <span class="skill-tag" data-skill="pandas">Pandas</span>
+          <span class="skill-tag" data-skill="matplotlib">Matplotlib</span>
         </div>
       </div>
       <div class="skill-group">
@@ -562,7 +494,7 @@
           <span class="skill-tag" data-skill="pm">Project Management</span>
           <span class="skill-tag" data-skill="writing">Research Writing & Medium</span>
           <span class="skill-tag" data-skill="bahasa">Bahasa Indonesia</span>
-          <span class="skill-tag" data-skill="english">English (CEFR C1)</span>
+          <span class="skill-tag" data-skill="english">English</span>
         </div>
       </div>
       <div class="skill-panel" id="skillPanel"></div>
@@ -580,11 +512,11 @@
   <div class="timeline">
 
     <div class="timeline-item" id="exp-jijia" data-skills="pm,qc,instrumentation,leadership,troubleshoot">
-      <div class="tl-period">April 2026 – Present</div>
+      <div class="tl-period">May 2026 – Present</div>
       <div class="tl-title">Field Engineer</div>
       <div class="tl-company">JIJIA HEALTHCARE — <span>Jakarta, Indonesia</span></div>
       <ul class="tl-points">
-        <li>Coordinated the end-to-end deployment of <strong>73 medical devices</strong> within a 3-months period, ensuring on-time delivery, installation readiness, and seamless handover across multiple healthcare facilities.</li>
+        <li>Coordinated the end-to-end deployment of <strong>73 medical devices</strong> within a 2-month period, ensuring on-time delivery, installation readiness, and seamless handover across multiple healthcare facilities.</li>
         <li>Partnered with healthcare professionals across <strong>32 healthcare facilities</strong> to resolve operational issues, provide technical support, and maintain long-term customer relationships.</li>
       </ul>
       <div class="tl-skills">
@@ -604,29 +536,6 @@
         <span class="tl-skill-badge">Electrochemistry</span><span class="tl-skill-badge">Python</span>
         <span class="tl-skill-badge">MATLAB</span><span class="tl-skill-badge">Signal Processing</span>
       </div>
-      <div class="reveal-trigger" id="trigger-research" style="margin-top:16px;font-size:11px;padding:9px 16px;" onclick="toggleReveal('research')">
-        Open me — research documentation
-      </div>
-      <div class="reveal-panel" id="reveal-research">
-        <div class="hobby-panel-photos">
-          <figure class="photo-figure">
-            <img src="research_1.jpg" alt="Cyclic voltammetry peak analysis">
-            <figcaption>Analyzing cyclic voltammetry peaks in the biosensor data</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <video src="research_2.mp4" controls preload="metadata"></video>
-            <figcaption>Running the electrochemical measurement software</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <img src="research_3.jpg" alt="Cyclic voltammetry scan results">
-            <figcaption>Reviewing scan results across multiple cycles</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <video src="research_4.mp4" controls preload="metadata"></video>
-            <figcaption>Documenting the experimental workflow</figcaption>
-          </figure>
-        </div>
-      </div>
     </div>
 
     <div class="timeline-item" id="exp-lab" data-skills="instrumentation,pcb,signal,echem">
@@ -640,34 +549,11 @@
       <div class="tl-skills">
         <span class="tl-skill-badge">PCB Design</span><span class="tl-skill-badge">ECG</span><span class="tl-skill-badge">Instrumentation</span>
       </div>
-      <div class="reveal-trigger" id="trigger-lab" style="margin-top:16px;font-size:11px;padding:9px 16px;" onclick="toggleReveal('lab')">
-        Open me — lab assistant photos
-      </div>
-      <div class="reveal-panel" id="reveal-lab">
-        <div class="hobby-panel-photos">
-          <figure class="photo-figure">
-            <img src="asprak_1.jpg" alt="Testing signal acquisition circuit">
-            <figcaption>Testing the ECG/PPG signal acquisition circuit with students</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <img src="asprak_2.jpg" alt="Certificate of Appreciation, Labs Assistant">
-            <figcaption>Certificate of Appreciation — Labs Assistant, EB3109</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <img src="asprak_3.jpg" alt="LED indicator circuit schematic">
-            <figcaption>LED indicator circuit schematic taught in class</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <video src="asprak_4.mp4" controls preload="metadata"></video>
-            <figcaption>Guiding students through the breadboard build</figcaption>
-          </figure>
-        </div>
-      </div>
     </div>
 
     <div class="timeline-item" id="exp-ids" data-skills="qc,troubleshoot,instrumentation">
       <div class="tl-period">Jun – Aug 2024</div>
-      <div class="tl-title">Field Engineer</div>
+      <div class="tl-title">Field Engineer Service</div>
       <div class="tl-company">PT IDS Medical Systems Indonesia — <span>Jakarta, Indonesia</span></div>
       <ul class="tl-points">
         <li>Diagnosed and resolved issues with advanced medical devices across <strong>15+ hospitals</strong>.</li>
@@ -675,25 +561,6 @@
       </ul>
       <div class="tl-skills">
         <span class="tl-skill-badge">Quality Control</span><span class="tl-skill-badge">Troubleshooting</span><span class="tl-skill-badge">Medical Devices</span>
-      </div>
-      <div class="reveal-trigger" id="trigger-engineer" style="margin-top:16px;font-size:11px;padding:9px 16px;" onclick="toggleReveal('engineer')">
-        Open me — field engineer photos
-      </div>
-      <div class="reveal-panel" id="reveal-engineer">
-        <div class="hobby-panel-photos">
-          <figure class="photo-figure">
-            <img src="engineer_1.jpg" alt="Ventilators ready for handover">
-            <figcaption>Ventilators ready for hospital handover</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <img src="engineer_3.jpg" alt="Repairing a device PCB">
-            <figcaption>Diagnosing a faulty device PCB</figcaption>
-          </figure>
-          <figure class="photo-figure">
-            <img src="engineer_4.jpg" alt="Quality control check on surgical light">
-            <figcaption>Running a quality control check on a surgical light</figcaption>
-          </figure>
-        </div>
       </div>
     </div>
 
@@ -781,35 +648,11 @@
           <span class="project-tag">SPCE</span><span class="project-tag">Cardiac Diagnostics</span><span class="project-tag">Point-of-Care</span>
         </div>
         <div class="project-link-hint">View on Google Drive</div>
-        <span class="reveal-trigger" id="trigger-biosensor" style="margin-top:14px;font-size:11px;padding:9px 16px;"
-              onclick="event.preventDefault();event.stopPropagation();toggleReveal('biosensor')">
-          Open me — behind-the-scenes photos
-        </span>
       </div>
     </a>
-    <div class="reveal-panel full-span" id="reveal-biosensor">
-      <div class="hobby-panel-photos">
-        <figure class="photo-figure">
-          <img src="electrochemical_biosensor_1.jpg" alt="Screen-printed carbon electrodes">
-          <figcaption>Modified screen-printed carbon electrodes (SPCE)</figcaption>
-        </figure>
-        <figure class="photo-figure">
-          <img src="electrochemical_biosensor_2.jpg" alt="FTIR spectroscopy instrument">
-          <figcaption>Characterizing the electrode surface with FTIR</figcaption>
-        </figure>
-        <figure class="photo-figure">
-          <video src="electrochemical_biosensor_3.mp4" controls preload="metadata"></video>
-          <figcaption>Running voltammetric measurements</figcaption>
-        </figure>
-        <figure class="photo-figure">
-          <img src="electrochemical_biosensor_4.jpg" alt="Reagent preparation">
-          <figcaption>Preparing reagents and reference solutions</figcaption>
-        </figure>
-      </div>
-    </div>
 
     <!-- CardioGuard -->
-    <a class="project-card featured" id="proj-cardioguard"
+    <a class="project-card" id="proj-cardioguard"
        href="https://drive.google.com/drive/folders/1sQNHlua-xWWUgqXJ6g5HmnvZWLZz1M0c?usp=sharing"
        target="_blank" rel="noopener" data-skills="arduino,signal,instrumentation">
       <div class="project-visual">
@@ -841,33 +684,8 @@
           <span class="project-tag">ECG</span><span class="project-tag">Wearable</span>
         </div>
         <div class="project-link-hint">View on Google Drive</div>
-        <span class="reveal-trigger" id="trigger-cardio" style="margin-top:14px;font-size:11px;padding:9px 16px;"
-              onclick="event.preventDefault();event.stopPropagation();toggleReveal('cardio')">
-          Open me — behind-the-scenes photos
-        </span>
       </div>
     </a>
-    <div class="reveal-panel full-span" id="reveal-cardio">
-      <div class="hobby-panel-photos">
-        <figure class="photo-figure">
-          <img src="cardiovascular_1.jpg" alt="CardioGuard prototype build">
-          <figcaption>Prototyping the wearable ECG circuit</figcaption>
-        </figure>
-        <figure class="photo-figure">
-          <img src="cardiovascular_2.png" alt="CardioGuard circuit schematic">
-          <figcaption>Signal conditioning circuit design</figcaption>
-        </figure>
-        <figure class="photo-figure">
-          <img src="cardiovascular_3.jpg" alt="CardioGuard 3D enclosure design">
-          <figcaption>Designing the wearable enclosure</figcaption>
-        </figure>
-        <figure class="photo-figure">
-          <img src="cardiovascular_4.jpg" alt="CardioGuard finished device">
-          <figcaption>The finished CardioGuard device</figcaption>
-        </figure>
-      </div>
-    </div>
-
 
     <!-- Optic Disc -->
     <a class="project-card" id="proj-optic"
@@ -958,29 +776,6 @@
       <div class="edu-desc">Coursework: Signals, Systems & Controls · Industrial Engineering Management · Biomedical Instrumentation Systems · Biomedical Measurement & Instrumentation · Digital & Microprocessor Systems. Graduated <strong style="color:var(--text)">October 2025</strong>.</div>
     </div>
     <div class="edu-year">2021<br>— 2025</div>
-  </div>
-  <div class="reveal-trigger" id="trigger-graduate" onclick="toggleReveal('graduate')" style="margin-top:24px;">
-    Open me — graduation day photos
-  </div>
-  <div class="reveal-panel" id="reveal-graduate">
-    <div class="hobby-panel-photos" id="graduate-photos">
-      <figure class="photo-figure">
-        <img src="present.jpg" alt="Final defense presentation">
-        <figcaption>Presenting my final project — electrochemical biosensor for cardiac troponin I</figcaption>
-      </figure>
-      <figure class="photo-figure">
-        <img src="after.jpg" alt="Right after the defense">
-        <figcaption>Right after the defense — relief and pride all at once</figcaption>
-      </figure>
-      <figure class="photo-figure">
-        <img src="graduationphoto_1.JPG" alt="Graduation photo">
-        <figcaption>Graduation day, ITB</figcaption>
-      </figure>
-      <figure class="photo-figure">
-        <img src="graduationphoto_3.JPG" alt="Graduation photo">
-        <figcaption>Graduation day, ITB</figcaption>
-      </figure>
-    </div>
   </div>
 </section>
 
@@ -1089,59 +884,74 @@
   <!-- TRAVEL EXPANDED PANEL -->
   <div class="hobby-panel" id="panel-travel">
     <button class="hobby-panel-close" onclick="toggleHobby('travel')">✕ close</button>
-    <p style="font-size:12px;color:var(--text-dim);margin-bottom:16px;font-family:'DM Mono',monospace;letter-spacing:0.05em;">— click a pin for stories &amp; videos —</p>
+    <p style="font-size:12px;color:var(--text-dim);margin-bottom:16px;font-family:'DM Mono',monospace;letter-spacing:0.05em;">— click a region to explore —</p>
     <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;">
-      <!-- Indonesia map — accurate geography, projected from real geodata -->
+      <!-- Indonesia map using Google Maps Static-style approach via SVG with detailed paths -->
       <div style="flex:1.4;min-width:300px;">
-        <svg id="indonesia-map" viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;border-radius:14px;">
-          <defs>
-            <radialGradient id="oceanGrad" cx="42%25" cy="35%25" r="80%25">
-              <stop offset="0%25" stop-color="#0d1a22"/>
-              <stop offset="100%25" stop-color="#05080a"/>
-            </radialGradient>
-            <linearGradient id="islandGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%25" stop-color="#4d8467"/>
-              <stop offset="100%25" stop-color="#33604a"/>
-            </linearGradient>
-            <filter id="pinGlow" x="-120%25" y="-120%25" width="340%25" height="340%25">
-              <feGaussianBlur stdDeviation="2.5" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
+        <svg id="indonesia-map" viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;cursor:pointer;border-radius:10px;background:#070c0f;">
           <!-- Ocean base -->
-          <rect width="620" height="300" fill="url(#oceanGrad)" rx="14"/>
-          <!-- Dotted graticule -->
-          <g fill="#12222c">
-            <circle cx="20" cy="20" r="1"/><circle cx="20" cy="60" r="1"/><circle cx="20" cy="100" r="1"/><circle cx="20" cy="140" r="1"/><circle cx="20" cy="180" r="1"/><circle cx="20" cy="220" r="1"/><circle cx="20" cy="260" r="1"/>
-          </g>
-          <!-- compass -->
-          <g transform="translate(578,30)" opacity="0.55">
-            <circle r="16" fill="none" stroke="#1e2e3a" stroke-width="1"/>
-            <path d="M0 -12 L4 0 L0 12 L-4 0 Z" fill="#3db8ff" opacity="0.7"/>
-            <text y="-20" font-family="monospace" font-size="8" fill="#3a5566" text-anchor="middle">N</text>
-          </g>
+          <rect width="620" height="300" fill="#070c0f" rx="10"/>
+          <!-- Subtle grid -->
+          <line x1="0" y1="150" x2="620" y2="150" stroke="#0d1820" stroke-width="1"/>
+          <line x1="310" y1="0" x2="310" y2="300" stroke="#0d1820" stroke-width="1"/>
 
-          <!-- Accurate Indonesia silhouette (projected from real geographic data) -->
-          <path id="indonesia-landmass" d="M43.383,98.314L46.224,101.953L47.342,102.447L48.878,104.109L49.251,104.67L48.832,105.838L48.506,109.139L47.807,109.97L46.038,109.566L45.991,108.982L44.967,106.489L43.151,105.097L42.406,105.03L41.94,103.615L41.009,101.908L38.215,98.831L40.357,98.853L41.381,98.112L41.614,97.505L41.8,97.348ZM65.177,140.289L63.966,140.356L61.405,138.806L60.799,138.11L60.66,137.166L58.238,133.595L57.912,132.764L58.844,129.821L61.358,129.125L62.196,129.619L62.476,130.944L63.873,133.325L64.338,134.605L64.711,135.189L64.851,135.616L64.757,135.931L65.782,137.458L66.48,138.334L66.574,139.772ZM291.21,229.113L289.581,231.839L290.186,232.271L290.512,232.68L287.811,233.248L286.693,232.953L286.042,233.021L283.294,232.521L281.338,231.885L281.105,231.408L281.245,230.817L281.851,230.999L283.341,231.089L283.946,230.84L283.946,229.09L283.713,226.82L285.762,224.959L286.88,224.21L288.137,223.756L291.304,224.8L291.816,225.072L292.235,225.481L292.421,226.162ZM275.797,223.121L277.101,223.824L278.963,225.844L279.103,226.411L278.544,226.956L277.24,227.819L274.307,229.136L273.841,229.772L273.189,230.999L273.049,231.521L272.863,231.817L272.537,232.021L271.885,232.203L271.187,231.93L271.792,231.158L271.839,230.203L271.373,229.318L270.721,228.591L269.371,227.592L267.974,226.684L266.53,226.252L264.993,226.048L264.435,225.617L263.55,224.505L263.271,223.892L263.131,223.257L263.224,222.645L263.596,222.622L265.087,222.758L267.834,223.484L269.231,223.529L269.976,223.37L271.978,221.964L272.491,221.987L274.4,222.599ZM154.165,138.873L154.631,139.772L155.236,140.558L155.702,141.434L156.307,145.591L158.31,149.165L164.177,150.581L163.199,151.143L162.733,151.66L162.361,152.267L161.523,154.74L161.569,155.279L162.081,156.111L162.221,157.033L161.476,157.033L160.684,156.808L159.986,156.471L159.381,156.021L158.729,155.661L158.03,155.437L156.819,154.717L155.236,154.222L153.56,153.84L152.768,152.784L152.396,151.48L152.815,149.547L152.396,149.007L151.79,148.535L151.092,147.142L150.812,145.501L149.788,144.872L148.391,144.49L147.786,144.176L145.085,144.76L144.433,144.625L143.874,144.176L142.384,143.704L142.43,142.805L143.129,142.086L144.759,141.345L145.504,140.738L145.644,139.929L145.364,139.345L145.504,138.716L146.016,138.11L146.621,137.638L148.205,137.031L148.95,138.11L149.276,139.008L149.741,139.682L150.393,138.739L149.974,137.121L151.231,136.762L152.442,136.739L153.327,137.188L153.932,137.885ZM375.822,176.208L376.101,179.002L376.008,179.723L375.31,178.664L375.03,178.438L374.844,178.664L374.564,178.776L374.192,178.776L373.726,179.858L373.68,180.872L373.307,181.548L373.121,183.825L373.261,184.456L373.819,184.141L374.145,184.073L375.403,184.952L376.101,185.584L375.915,186.351L375.03,187.14L374.052,187.478L373.307,187.14L373.074,187.298L372.655,187.704L372.283,188.245L372.422,188.787L371.538,190.321L371.072,190.75L370.048,190.276L369.396,190.682L368.883,190.659L368.138,189.102L368.138,188.381L368.837,187.568L368.883,186.982L369.209,186.328L370.001,185.426L370.467,184.772L370.467,184.344L370.839,182.72L370.932,182.044L371.165,181.323L371.538,179.835L371.584,177.086L372.795,174.811L373.959,174.181L374.471,174.068L374.378,174.676ZM368.883,185.539L368.557,186.396L367.859,187.072L367.254,187.117L366.695,186.982L365.624,186.396L365.344,187.005L364.506,186.982L364.227,186.193L364.785,183.825L365.67,182.946L365.577,182.022L364.879,180.038L365.344,179.002L367.347,178.236L369.07,177.289L369.628,177.086L370.141,177.807L370.373,181.165L368.511,183.825ZM183.549,69.518L181.779,69.99L180.755,69.315L181.872,68.505L182.245,68.438L182.524,68.28L182.617,67.943L180.615,67.403L180.056,66.93L179.497,65.714L179.497,64.949L182.059,62.9L182.664,62.675L182.757,63.531L184.527,65.669L184.62,67.11L184.573,67.628ZM182.152,156.066L181.919,157.438L181.639,157.955L180.522,158.63L180.196,159.035L179.171,158.967L179.032,158.247L178.706,157.775L177.635,157.213L177.355,157.348L177.169,158.18L175.074,158.765L174.468,158.81L174.748,157.708L174.235,156.853L174.189,155.796L174.096,155.324L173.816,155.054L174.328,154.335L174.282,153.503L174.841,152.626L175.167,150.491L177.355,150.019L177.821,150.401L180.429,150.873L182.245,152.177L183.223,153.908ZM533.682,125.712L536.43,126.206L537.408,126.183L538.385,126.745L539.596,126.475L540.248,126.655L542.53,128.631L543.647,129.934L545.277,131.057L546.488,131.438L545.603,132.449L543.787,132.988L543.089,133.011L541.692,132.404L540.527,132.516L539.55,131.753L539.363,130.585L538.385,127.912L537.035,128.676L535.498,127.463L535.079,127.441L534.94,127.643L534.288,127.216L533.729,126.385ZM534.846,137.862L539.969,138.514L541.319,138.424L544.253,138.694L546.674,139.547L550.912,139.705L552.216,139.974L553.194,140.558L550.819,141.052L549.701,141.502L547.606,141.726L545.836,141.502L544.579,141.771L544.113,141.322L542.297,140.873L539.922,139.952L535.033,138.851L534.8,138.177ZM474.543,117.336L476.778,117.875L477.29,117.785L480.55,119.222L481.062,119.918L480.876,120.39L481.341,121.041L480.317,122.006L479.805,122.119L479.246,121.759L478.222,121.535L477.057,121.939L476.266,121.647L475.614,120.749L474.496,120.21L472.866,118.324L472.075,118.391L472.308,119.132L472.959,119.604L473.891,121.041L474.403,121.176L474.915,121.131L475.66,121.737L475.614,122.658L473.751,123.017L473.099,122.343L472.959,121.108L471.888,121.535L471.469,121.961L471.143,122.006L470.445,120.726L468.443,120.659L467.092,119.985L467.744,119.267L467.837,118.593L468.722,118.211L469.607,118.548L470.491,118.054L471.143,118.189L471.609,117.875L473.379,117.673ZM444.042,90.721L441.993,90.945L441.527,90.339L440.968,87.552L442.412,85.327L444.275,84.023L445.532,83.686L445.951,83.664L447.069,85.26L446.23,88.496L445.252,90.136ZM440.13,138.761L439.338,139.278L438.966,139.435L437.057,139.075L434.822,139.143L432.493,139.637L431.143,139.233L430.305,138.559L430.351,137.84L431.143,136.088L432.866,134.74L433.611,134.515L434.822,134.875L436.917,135.886L438.593,137.099L440.084,138.02ZM412.982,148.985L412.796,149.232L412.004,148.535L411.492,146.558L411.026,146.018L410.514,144.153L410.654,143.614L411.305,142.827L411.818,142.827L412.19,143.299L411.957,145.322L413.122,147.883ZM412.609,140.423L416.567,140.85L416.009,141.322L411.725,142.063L410.188,141.929L405.531,142.378L404.972,142.356L404.879,141.637L404.367,141.12L405.112,140.671L406.09,140.581L408.651,140.738ZM398.965,139.345L400.176,139.794L400.595,139.794L401.014,139.255L401.247,139.165L401.806,139.435L401.899,140.311L402.691,140.176L403.296,140.491L403.482,140.693L403.436,141.569L401.107,141.704L399.431,142.423L397.196,141.794L394.681,142.872L393.144,143.232L391.841,143.209L390.676,141.322L391.328,139.098L391.841,138.739L392.679,138.559L395.007,138.446ZM481.155,221.08L480.969,221.238L479.339,221.057L478.454,221.057L478.547,220.082L478.082,219.334L478.734,218.246L478.734,216.977L479.432,216.818L479.525,216.093L480.317,214.191L480.783,213.76L481.481,213.602L482.273,212.492L482.738,212.153L483.204,211.315L483.903,210.93L483.809,210.206L484.229,209.821L485.3,209.527L486.045,209.867L486.51,210.613L485.3,211.519L485.905,213.76L485.02,216.207L484.461,216.954L483.39,217.566L483.111,218.178L481.854,219.379L481.481,220.422L481.388,220.853ZM422.668,216.75L422.807,217.385L422.807,217.679L421.271,217.883L419.781,218.586L418.989,219.402L418.384,220.445L416.335,220.014L414.519,219.946L413.68,219.583L412.796,219.606L411.678,219.923L410.048,220.83L409.676,220.898L409.815,219.538L410.281,218.699L411.957,216.705L413.401,217.136L415.077,217.272L416.94,216.864L418.29,215.98L420.153,215.504L421.69,216.682ZM393.843,222.939L394.169,223.733L395.193,223.28L396.171,223.189L398.36,223.257L399.99,223.439L400.968,223.779L401.061,225.367L400.595,225.708L392.167,226.911L391.328,226.525L391.002,226.139L391.934,224.959L391.515,224.391L391.98,223.484L393.005,222.871ZM477.011,134.291L476.545,134.65L474.962,134.313L474.17,133.527L473.611,132.449L473.239,131.573L473.146,130.854L472.68,130.001L472.727,129.687L475.614,128.788L476.173,129.125L477.383,129.148L477.942,129.799L477.57,132.651ZM30.624,49.539L32.208,49.652L35.141,48.953L36.771,49.02L38.261,49.539L39.658,49.832L43.011,49.449L43.663,49.562L44.268,49.855L44.78,50.306L46.317,51.997L48.925,54.07L49.67,55.4L50.089,56.909L50.368,57.247L53.302,60.108L53.628,61.324L53.209,62.968L54.094,64.296L56.934,65.534L58.611,66.435L58.983,66.975L59.216,67.628L60.194,68.618L61.358,69.248L64.99,70.913L69.787,74.422L72.534,76.087L74.769,78.605L75.607,79.82L76.259,81.124L77.61,83.012L79.938,85.372L80.544,86.069L81.149,87.103L81.894,88.069L82.779,88.945L83.803,89.62L84.828,89.844L86.551,91.529L87.482,92.069L87.342,90.743L86.551,89.597L86.551,88.878L86.69,88.271L87.342,87.732L88.087,87.597L89.531,88.069L91.813,90.069L92.791,91.237L93.536,92.855L94.141,94.54L95.072,95.371L96.33,95.663L97.773,95.776L99.077,96.292L102.104,98.629L103.128,99.707L103.873,100.987L104.432,102.514L104.758,104.109L104.944,104.468L106.9,106.377L107.925,107.186L109.182,107.59L112.814,108.017L114.118,108.69L115.189,109.791L115.655,110.913L114.863,111.901L112.022,113.428L108.949,114.484L111.929,114.125L113.419,113.675L114.816,112.979L116.213,112.104L118.356,110.868L119.147,110.621L120.125,110.711L120.963,111.071L122.267,112.261L123.478,113.541L124.409,115.023L124.968,116.662L123.944,117.538L122.407,118.167L120.311,119.761L120.125,120.39L120.544,120.794L120.032,121.961L121.196,122.68L121.382,123.309L120.358,124.185L120.451,124.724L121.662,127.037L122.267,127.576L124.13,128.743L126.924,129.934L128.507,130.495L130.277,130.922L131.068,130.899L132.372,130.72L132.651,131.169L133.21,133.46L133.49,134.897L133.909,137.975L134.421,139.255L134.374,140.805L135.073,142.131L136.47,142.985L137.96,143.681L138.659,144.355L138.659,145.367L138.426,146.176L137.913,146.805L136.377,148.153L136.097,148.715L135.865,150.176L136.144,150.85L136.749,150.895L137.215,150.536L139.078,148.58L139.59,148.221L140.288,147.951L140.987,147.771L144.34,147.771L145.783,148.063L147.041,148.715L148.205,149.524L152.303,154.65L154.165,157.483L154.305,158.18L154.351,158.922L154.025,159.484L152.303,161.419L152.116,161.936L151.557,164.051L151.651,165.559L152.256,166.211L152.675,166.886L152.675,167.517L151.511,170.646L151.418,171.163L152.116,176.253L152.163,177.627L152.023,179.362L152.116,182.157L151.231,190.817L151.045,191.336L150.347,192.668L149.415,192.645L148.67,192.42L148.112,191.923L147.832,191.291L147.413,190.772L145.178,189.17L144.572,189.441L142.291,191.427L141.685,191.72L140.94,191.472L139.776,190.885L136.004,188.787L135.771,189.463L135.725,190.366L136.47,192.645L136.563,193.639L135.865,193.842L135.492,193.797L133.955,192.465L132.512,190.998L130.882,189.035L129.671,188.087L128.6,187.05L125.527,183.059L124.735,182.45L120.032,179.655L119.101,178.979L117.89,177.83L116.586,176.794L113.745,175.172L108.809,171.028L106.667,168.665L104.292,164.839L103.501,163.871L99.496,160.992L97.307,159.26L96.376,158.27L94.281,154.785L93.629,153.615L92.884,152.581L91.58,151.75L90.462,150.76L88.18,147.614L87.482,146.378L86.97,145.007L87.063,142.311L82.266,134.089L81.056,131.528L79.985,127.98L79.705,127.621L77.098,124.432L76.213,123.421L75.095,122.456L74.164,121.333L72.394,117.695L71.696,116.684L70.765,115.943L67.365,114.574L66.108,113.81L65.083,112.732L64.478,111.34L63.826,108.398L62.196,103.929L60.427,97.932L59.216,95.259L57.819,93.147L57.4,92.675L51.207,88.878L50.182,88.316L49.065,87.979L47.481,87.732L46.224,86.766L45.758,85.012L45.479,82.652L45.153,81.236L44.827,80.449L42.219,78.763L41.241,77.459L40.403,75.997L39.612,74.872L36.771,71.003L35.793,69.99L34.582,69.27L31.043,68.528L29.972,67.875L28.249,65.669L27.225,64.544L24.105,62.09L18.796,56.909L17.725,55.625L16.887,54.273L16.235,52.831L14,48.84L14.14,48.028L14.512,47.194L14.466,46.494L14.186,45.795L14.233,45.186L14.931,44.825L16.421,44.351L18.005,44.396L19.448,44.599L20.845,44.983L22.196,45.84L24.571,47.96L25.968,48.705L27.504,49.043ZM370.699,229.09L368.837,229.545L367.719,229.999L366.648,230.59L365.95,230.703L364.692,230.749L362.969,230.635L361.759,230.84L358.452,232.339L357.149,232.476L356.031,232.839L355.658,232.248L355.193,231.817L354.075,231.726L352.958,231.748L351.84,233.089L350.07,232.794L349.372,232.93L348.72,233.203L348.068,233.317L347.37,233.226L344.762,232.203L341.782,231.589L338.801,231.817L336.24,231.249L334.843,231.68L333.493,232.317L333.12,231.658L332.608,231.067L332.189,230.226L332.189,229.227L332.329,228.545L332.701,227.932L332.934,227.274L333.074,226.57L333.633,226.911L334.191,226.797L335.961,226.025L337.684,224.891L339.267,224.46L340.198,224.346L340.943,224.573L341.735,224.482L342.573,224.233L343.877,225.118L344.389,225.299L346.159,225.367L347.742,225.867L349.139,226.638L351.188,227.342L352.445,228.296L353.377,228.636L354.075,228.75L354.681,228.614L355.519,227.978L356.45,227.705L357.288,227.705L358.778,227.546L359.43,227.387L360.129,227.047L360.827,227.251L361.433,227.592L363.947,229.272L364.739,229.318L366.136,228.954L366.602,228.5L366.788,227.796L367.207,227.228L367.719,226.729L368.371,226.343L370.234,225.708L371.538,225.072L372.422,223.983L370.373,223.529L370.793,222.758L371.491,222.304L372.422,222.463L373.214,223.076L373.54,225.39L372.888,225.73L372.516,226.071L372.236,226.525L371.025,227.387L371.491,228.432L371.165,228.886ZM334.843,239.094L335.449,239.663L337.544,240.801L337.87,241.279L338.01,242.076L338.429,242.668L339.407,242.76L340.431,242.646L341.176,243.01L341.875,243.602L342.853,244.742L343.737,246.018L344.808,246.725L345.46,247.774L345.088,248.709L343.691,250.009L342.946,250.283L341.968,250.374L340.338,251.15L339.779,250.739L337.963,250.465L336.566,249.918L335.355,248.891L334.657,247.819L333.772,246.839L332.236,246.2L329.535,244.309L327.812,244.149L327.113,244.286L326.415,244.286L322.829,243.443L322.27,242.942L321.851,242.304L321.432,241.689L321.199,240.983L321.665,240.369L322.131,239.936L324.133,239.208L325.576,238.98L327.206,239.026L329.674,238.798L332.049,239.162L332.748,238.889L333.912,238.115L334.331,238.388ZM311.933,225.254L312.584,225.753L313.19,225.708L314.401,224.936L315.146,224.641L315.937,224.618L316.729,224.754L317.474,225.322L317.753,226.23L318.033,226.525L318.498,225.413L319.104,225.095L319.756,224.913L320.78,224.981L321.572,225.503L322.317,227.07L322.27,228.432L322.55,228.931L323.062,229.318L323.434,229.84L323.108,230.385L322.783,230.635L321.805,230.885L321.386,230.794L320.966,230.408L320.501,230.272L319.43,230.408L318.452,230.703L318.592,231.203L319.383,231.43L319.616,231.68L319.569,231.998L319.243,232.067L318.219,231.635L317.52,231.703L315.006,232.294L314.354,232.271L313.935,231.726L313.981,230.294L313.702,229.908L311.839,231.658L311.281,232.089L310.489,232.294L309.744,232.226L306.996,233.271L306.158,233.135L305.32,233.135L302.433,234.271L300.896,234.59L300.105,234.612L299.313,234.521L298.614,234.612L297.963,235.09L296.659,235.477L295.355,235.181L294.191,234.772L293.12,234.249L292.887,233.589L292.933,232.794L293.399,231.703L293.073,229.795L293.306,228.909L293.725,228.046L294.424,227.728L295.262,227.683L296.705,226.911L298.009,225.889L298.754,225.98L300.477,226.684L301.502,226.774L303.225,226.661L303.923,227.092L304.202,228.091L304.575,228.455L305.087,228.704L306.298,230.385L307.416,230.294L308.393,230.612L310.163,229.59L311.467,229.613L311.839,228.841L311.048,228L310.116,227.297L309.604,227.16L309.045,227.206L308.533,227.092L306.438,225.571L305.786,224.732L305.413,223.756L305.646,223.053L307.09,222.418L307.788,222.259L310.349,222.69L310.768,223.053L311.42,224.596ZM397.941,104.401L395.473,106.602L394.681,107.657L394.029,108.803L393.051,110.06L391.934,111.183L391.375,111.52L390.025,112.126L389.233,112.351L387.743,112.44L383.226,113.316L381.782,113.428L380.292,113.384L377.498,113.159L376.939,113.047L375.822,111.901L374.564,111.003L373.447,110.891L372.329,110.981L364.18,111.048L361.34,111.228L358.499,111.632L356.962,111.452L355.426,110.981L354.308,110.824L353.144,110.868L347.789,111.565L346.438,111.497L343.737,110.621L342.154,110.442L340.617,110.666L339.174,111.475L338.662,111.991L337.172,113.81L336.333,115.113L335.681,116.752L335.169,118.436L334.843,119.806L334.843,121.243L335.076,122.86L335.495,124.454L335.961,125.689L337.777,128.519L338.149,128.901L340.198,129.709L341.363,130.72L342.527,133.55L343.318,135.01L344.11,135.01L344.995,134.92L346.531,135.099L348.068,135.481L349.558,134.605L350.35,132.966L351.188,131.73L353.19,129.417L354.355,128.339L355.053,128.002L355.798,128.137L356.404,128.766L357.149,129.26L358.639,129.507L360.175,129.35L361.759,128.586L362.317,128.137L362.83,127.553L364.18,127.059L367.393,127.059L369.07,127.239L372.05,127.037L372.003,126.61L371.445,126.161L371.258,125.801L371.817,125.554L373.726,125.038L375.682,124.656L377.126,124.926L378.383,125.667L378.895,126.43L379.081,127.351L378.616,129.709L378.383,130.271L377.358,130.54L376.427,130.226L375.449,129.013L374.145,128.564L372.236,128.923L371.584,129.282L370.979,129.776L369.908,131.034L369.023,132.472L367.114,134.718L364.879,136.649L363.808,137.391L362.597,137.907L358.732,139.188L357.707,140.131L356.916,141.367L356.031,141.794L355.007,141.929L354.261,141.704L352.725,141.008L352.213,141.569L352.119,142.445L352.864,142.76L354.122,143.726L355.053,145.097L355.658,145.389L357.009,145.838L357.568,146.265L358.592,147.434L360.175,150.176L360.734,151.66L361.619,152.851L364.32,154.897L364.46,155.482L364.32,156.156L364.506,156.763L365.484,157.933L365.717,158.697L364.646,159.664L364.599,161.059L363.947,162.926L363.808,163.556L363.808,164.141L364.273,164.681L364.785,165.086L365.531,165.311L366.182,165.694L367.393,167.157L368.045,167.539L368.418,168.057L368.418,168.867L368.976,169.317L369.489,170.15L370.234,170.353L370.606,170.128L370.886,169.768L371.538,169.903L371.91,170.465L372.096,171.208L372.19,172.041L372.143,173.595L371.817,174.136L371.119,174.113L369.861,173.483L369.815,173.933L369.908,174.383L369.256,174.541L368.511,174.474L366.648,174.541L363.249,175.487L362.038,176.073L361.246,177.109L361.2,177.807L361.479,179.34L361.06,179.858L359.477,180.061L357.288,179.655L355.984,179.249L355.239,178.911L354.261,177.898L353.889,176.591L354.634,172.717L354.82,172.222L355.146,171.794L355.519,171.096L355.612,170.263L354.587,169.25L353.004,168.845L351.654,168.012L346.485,163.309L346.205,162.836L346.205,162.071L346.392,161.329L348.115,158.765L348.301,158.27L348.534,156.224L348.487,154.56L348.301,152.874L347.509,151.839L346.066,151.502L344.576,151.457L343.132,151.794L341.735,152.626L339.081,154.402L338.056,155.437L337.963,156.786L338.569,158.09L339.36,159.305L339.733,160.609L340.338,165.266L340.292,165.784L339.64,167.134L339.36,170.173L339.64,174.451L340.105,177.064L339.919,178.483L338.708,181.548L338.336,183.239L338.289,183.938L339.733,187.14L340.059,188.403L340.245,189.712L338.708,189.08L338.01,189.102L337.265,189.306L335.681,189.509L334.052,189.531L333.493,189.779L332.329,190.637L331.63,190.975L331.025,191.043L328.976,189.982L327.719,188.809L326.601,187.546L326.415,186.125L326.787,184.637L327.346,183.059L328.464,180.444L328.417,178.686L328.79,177.244L329.442,175.848L329.674,174.541L329.814,169.497L329.674,169.047L328.138,166.054L327.951,165.559L327.951,164.749L328.091,163.984L328.138,163.286L327.812,162.746L327.16,162.251L326.415,162.049L324.831,162.251L321.665,163.061L320.734,162.364L320.035,161.261L319.569,159.732L319.337,158.135L319.43,156.628L319.895,155.167L319.523,154.155L318.964,153.053L318.964,152.491L319.29,151.974L319.849,151.57L320.547,151.322L321.199,150.895L322.922,149.412L323.481,148.108L323.528,146.49L323.993,144.962L324.878,143.546L325.902,142.243L326.228,140.895L325.716,138.739L325.949,137.773L325.763,136.627L325.763,135.504L326.368,133.37L328.324,129.013L330.187,126.7L330.932,126.093L331.91,127.149L332.655,128.429L332.701,127.284L332.468,126.161L331.723,123.533L331.071,118.414L331.258,117.942L331.91,118.009L332.608,117.56L332.934,116.752L332.236,114.866L332.236,114.192L333.539,111.52L334.657,110.554L335.123,109.948L335.402,108.308L335.961,107.702L336.706,107.253L337.637,106.13L338.149,104.715L338.475,104.603L338.848,104.558L339.407,105.793L340.059,106.287L341.363,106.692L342.48,106.22L342.806,105.614L343.225,105.075L343.877,104.513L344.436,103.884L345.088,102.402L345.926,101.077L346.485,100.605L347.183,100.313L347.928,100.133L348.673,100.111L350.303,100.942L351.281,101.099L352.213,101.054L352.864,101.189L353.33,101.571L353.749,102.335L354.261,102.986L354.727,103.3L355.286,103.458L358.825,103.188L361.945,103.929L366.182,104.109L367.673,104.536L369.07,105.119L370.746,106.108L371.398,106.332L372.096,106.287L372.981,105.344L373.633,105.119L374.332,105.097L377.079,105.277L384.437,106.445L385.508,106.265L389.978,104.041L391.748,101.953L393.331,101.369L393.843,100.403L394.169,99.257L394.728,98.965L396.078,98.629L396.59,98.292L397.568,96.899L398.686,95.641L399.198,95.281L400.781,95.461L401.48,96.023L402.365,97.842L402.225,98.157L401.201,99.055L400.875,99.437L399.71,102.02L398.919,103.278ZM171.348,195.129L172.652,196.619L173.816,197.41L175.167,197.839L176.564,197.884L177.961,198.065L179.59,198.629L181.22,198.878L182.012,198.787L182.757,198.494L183.269,198.471L183.735,198.742L184.899,200.007L186.156,201.16L186.436,201.748L187.274,204.528L188.205,205.32L189.556,205.546L191.092,205.546L192.629,205.659L196.215,206.315L197.612,206.224L198.869,205.568L199.987,205.998L203.013,206.767L204.504,206.948L206.18,206.722L207.903,206.676L208.695,206.903L209.486,207.242L210.138,207.378L210.837,207.355L212.047,206.699L212.886,205.523L213.537,204.008L214.05,202.448L214.376,201.77L214.841,201.183L215.493,200.798L216.145,200.55L217.915,200.708L218.287,201.07L220.243,203.737L220.616,203.963L222.711,204.144L223.27,204.053L224.527,203.511L225.272,203.465L226.576,204.121L227.181,204.686L227.787,205.093L231.046,205.523L232.35,206.654L232.956,206.812L235.237,206.676L236.821,206.79L238.171,207.084L238.777,208.713L239.289,210.364L239.615,210.93L240.919,211.496L241.477,212.017L241.338,213.67L241.477,215.255L244.318,216.614L247.345,217.407L250.558,217.498L253.818,217.226L255.447,216.886L257.543,216.297L257.962,216.297L262.013,218.11L262.386,218.382L262.805,219.742L262.805,221.148L262.06,224.528L262.013,225.458L262.06,226.389L262.898,228.409L263.317,228.977L264.761,230.044L264.807,230.612L264.621,231.158L262.991,230.771L262.013,230.317L261.454,229.567L260.663,229.136L259.126,229.295L256.286,228.523L253.072,227.342L247.391,224.845L245.855,224.868L244.365,225.186L242.828,225.821L241.198,226.275L239.987,226.434L238.777,226.32L235.75,225.708L232.676,225.322L224.853,225.072L222.665,224.505L218.986,224.233L216.052,223.733L213.165,223.053L205.807,219.674L203.433,218.858L196.028,217.249L194.911,217.113L192.21,217.226L190.534,216.75L189.043,216.75L186.855,217.272L186.156,217.657L185.318,218.45L183.781,218.405L182.291,218.246L178.38,217.498L176.936,217.022L175.539,216.343L174.235,215.436L173.583,215.119L170.231,214.191L167.437,213.874L161.756,213.466L160.498,213.194L159.474,212.855L158.915,212.107L158.962,211.157L159.381,210.342L159.939,209.527L160.312,208.758L156.168,207.106L152.861,206.202L151.464,206.043L150.021,206.043L148.438,206.224L146.854,206.134L146.109,205.885L145.318,205.772L144.572,205.975L143.967,205.907L143.781,205.161L144.2,204.528L144.992,203.805L145.457,203.669L145.644,204.799L145.876,205.026L146.621,205.274L146.901,205.206L148.158,203.759L148.531,203.059L149.136,201.137L149.788,201.499L150.44,201.273L150.812,200.979L151.883,196.551L152.768,195.242L153.979,194.18L154.538,193.909L155.748,194.564L158.123,194.813L159.52,195.264L160.964,195.309L162.314,195.535L164.27,196.303L164.969,196.235L165.621,195.987L166.692,195.129L167.111,193.774L168.601,194.474L170.836,194.745ZM200.545,91.035L199.381,92.743L199.474,93.372L199.8,93.911L200.639,94.293L200.871,96.382L201.896,97.573L202.967,98.651L203.759,99.19L204.597,99.976L205.202,100.695L205.854,101.301L206.832,101.885L209.393,104.401L210.511,105.119L211.302,105.861L211.861,106.13L213.305,105.928L217.449,104.109L218.194,103.997L219.591,103.682L221.966,103.772L224.527,104.401L225.319,104.423L226.11,104.041L227.228,104.154L228.206,104.356L228.718,104.199L230.208,102.874L232.211,102.492L232.863,101.189L233.375,99.976L233.608,98.651L234.446,98.134L235.61,97.685L237.38,97.101L243.387,97.011L243.992,97.258L244.132,97.91L243.992,98.426L244.225,98.718L245.016,98.763L245.762,99.055L248.788,100.111L250.046,100.425L250.791,100.358L252.188,101.279L252.933,100.965L253.957,100.313L254.935,99.415L255.82,98.718L257.077,98.449L258.707,98.494L260.616,98.247L262.06,97.865L263.69,98.494L264.109,98.292L264.388,97.685L265.226,96.36L265.599,95.461L265.925,93.754L266.158,93.327L266.763,93.102L267.415,92.765L267.601,92.248L267.834,91.664L267.601,91.147L267.275,90.743L266.903,89.305L266.996,88.653L267.229,88.159L267.881,87.912L269.604,86.855L271.14,85.619L271.978,85.012L272.304,84.63L272.351,84.068L271.699,83.484L271.047,83.192L271.001,82.517L271.047,82.045L271.233,81.596L271.14,81.168L271.14,80.517L271.513,79.82L272.444,78.785L273.189,78.111L274.027,78.538L274.959,78.336L275.89,77.998L276.402,76.784L276.449,76.222L276.356,75.749L276.635,74.017L276.728,73.77L277.334,72.668L277.38,71.948L277.054,70.238L277.24,68.955L277.38,66.277L277.706,65.805L278.125,64.431L278.777,62.99L280.128,62.202L280.826,61.167L281.152,60.986L281.618,60.964L283.201,61.73L284.691,60.896L285.995,60.784L287.066,60.896L287.718,61.257L288.323,61.504L289.581,60.694L290.093,60.829L290.558,61.099L291.21,61.099L291.955,60.896L293.865,61.076L297.171,61.122L299.453,61.617L301.688,62.99L302.805,63.261L303.318,63.283L303.178,63.396L302.293,63.756L301.874,64.499L303.131,65.647L303.178,66.412L304.156,67.087L305.273,68.123L305.32,68.483L305.739,68.955L305.925,69.518L305.134,70.103L304.016,70.215L303.225,69.675L302.48,69L302.293,69.833L301.688,70.305L299.592,70.17L298.102,70.17L296.612,70.395L297.357,70.508L298.009,70.778L300.337,72.938L300.85,73.725L300.058,75.3L300.431,75.952L301.315,76.312L302.433,77.099L303.225,77.189L303.783,77.616L303.783,78.38L304.109,79.1L303.225,79.37L304.109,79.55L304.901,79.909L304.482,80.269L304.156,80.719L304.482,80.944L305.553,81.371L306.019,81.731L306.298,82.742L307.322,84.383L309.232,86.518L309.651,87.282L309.651,88.002L309.371,88.608L308.254,89.327L307.369,90.271L307.276,90.608L306.065,91.058L306.624,91.372L307.043,91.799L307.881,93.125L309.837,95.259L310.861,96.045L314.913,98.943L317.055,100.223L319.849,103.098L321.292,103.772L321.572,104.58L320.361,105.793L318.592,106.422L315.704,106.759L312.817,106.31L311.327,105.973L310.023,105.254L308.999,103.839L307.648,103.053L308.207,103.929L308.533,104.805L308.347,105.771L307.835,106.512L306.903,107.073L305.925,107.522L305.506,107.837L303.038,112.867L302.619,114.214L301.874,119.873L301.874,121.467L302.992,124.454L303.085,126.004L303.318,126.677L303.131,127.239L302.619,127.576L300.477,128.496L298.987,129.26L297.776,130.338L296.798,131.663L295.914,132.651L294.749,133.1L293.911,133.033L293.259,132.584L292.794,131.73L292.514,130.787L292.328,131.483L292.375,132.157L292.747,132.898L292.933,133.662L292.701,134.448L292.188,135.077L290.838,135.751L290.093,136.335L290,137.368L289.627,137.952L289.115,138.402L287.252,139.435L286.833,139.839L286.507,140.378L287.532,140.289L288.416,140.378L288.51,141.389L288.789,142.153L288.416,143.839L287.019,144.962L287.718,145.209L288.37,145.569L289.767,145.838L290.233,147.029L290.046,148.468L289.767,149.771L288.789,150.131L288.137,149.884L287.485,149.906L287.019,150.288L286.926,150.963L287.811,150.626L287.764,152.312L287.532,153.93L287.206,154.83L286.693,155.571L285.855,155.796L285.11,155.257L284.924,155.886L285.157,156.426L286.274,157.73L285.576,158.023L285.11,158.472L284.877,159.125L283.667,160.609L283.154,161.711L282.922,162.881L282.363,163.804L273.329,167.854L266.065,171.253L265.506,171.028L265.18,170.51L264.9,165.221L264.016,162.499L263.876,160.969L262.851,162.341L262.199,162.206L261.501,161.846L260.989,161.419L260.989,160.834L261.501,159.147L260.849,160.069L260.104,160.767L259.359,160.699L258.707,160.339L258.474,159.799L258.148,159.709L256.518,161.216L254.423,162.004L253.259,162.004L252.327,161.531L252.374,160.407L252.281,159.282L252.048,158.63L251.443,158.405L250.93,158.495L249.44,159.057L248.881,158.99L248.555,159.282L244.597,155.234L243.759,158.517L241.012,160.272L238.963,161.284L236.96,160.902L234.865,160.249L232.816,161.036L230.627,162.971L230.022,163.264L229.37,163.241L228.904,162.994L229.044,161.531L229.091,160.092L228.904,156.831L228.718,156.201L228.113,155.302L227.275,154.672L226.762,155.144L226.343,155.774L224.667,155.751L223.037,155.234L221.64,155.527L218.846,156.831L217.356,157.011L216.564,156.741L216.052,156.044L216.331,155.392L216.983,154.919L215.819,155.302L214.841,155.954L214.422,156.381L213.957,156.156L212.746,154.695L210.231,155.234L209.859,155.414L209.253,155.909L208.648,155.661L208.322,155.122L208.229,152.064L206.925,146.176L206.599,143.164L206.32,142.468L204.83,141.367L204.876,139.817L205.621,138.536L205.807,137.009L205.575,135.369L205.109,133.774L204.55,132.561L203.712,131.528L202.594,130.36L201.197,129.485L198.264,128.519L196.727,128.609L196.122,128.227L195.749,127.71L195.889,126.745L196.448,126.071L197.146,125.914L197.239,125.532L195.703,124.746L194.492,123.668L194.073,123.039L193.98,122.343L193.98,120.704L194.352,119.671L194.538,119.11L194.911,117.403L195.749,116.864L195.609,116.55L195.237,116.325L194.725,115.764L194.306,115.113L193.374,114.012L191.698,112.665L191.418,110.374L191.186,107.006L191.325,105.479L191.837,102.604L192.815,101.706L193.56,101.436L194.119,101.054L193.654,101.009L193.234,101.144L192.536,101.234L193.095,98.673L193.374,97.932L194.538,96.495L195.935,95.214L196.494,93.709L197.286,92.406ZM434.682,106.31L435.66,106.602L436.638,106.512L437.103,105.928L437.243,105.187L437.755,103.794L438.873,102.851L439.664,102.694L440.223,102.29L440.13,101.256L440.177,100.246L441.015,99.168L443.669,97.64L445.113,97.101L447.069,96.944L447.301,97.505L447.069,98.336L447.441,99.594L447.255,102.963L446.789,103.435L444.833,104.603L442.645,105.546L442.039,105.928L441.481,106.871L441.527,107.792L443.297,109.005L446.044,110.172L446.649,110.711L447.022,111.61L447.115,112.62L447.767,113.092L448.698,113.316L449.304,113.81L449.816,114.484L445.159,112.912L443.949,112.216L442.458,112.126L441.015,111.924L439.525,111.318L437.941,111.183L437.196,111.61L436.87,112.463L436.684,113.428L437.057,114.619L437.01,115.337L436.731,116.64L437.895,120.479L439.338,123.556L441.434,126.745L442.505,127.845L443.669,128.833L441.76,128.541L441.201,127.463L438.78,126.408L438.314,125.779L436.731,122.747L436.265,122.186L434.822,121.153L434.17,120.412L433.937,119.379L434.123,118.301L434.03,116.819L434.076,115.36L434.402,113.541L433.89,112.912L433.192,112.328L432.4,110.936L432.167,109.364L432.214,108.466L432.54,107.68L433.005,106.983L433.099,106.31L431.934,105.322L430.77,102.537L430.677,101.077L432.167,98.292L432.121,96.944L432.447,96.135L432.586,95.281L433.378,93.417L434.682,91.844L436.87,89.62L437.709,89.148L438.64,88.833L438.733,89.372L438.547,89.844L436.964,92.114L436.731,92.608L436.684,93.574L437.476,94.113L438.314,95.259L438.454,96.787L438.5,98.404L438.314,100.044L437.988,100.605L436.684,102.245L433.657,104.154L433.425,104.625L433.425,105.164L433.983,105.816ZM460.852,154.357L463.832,155.796L465.369,155.999L467.977,155.819L468.955,155.954L471.423,157.798L472.121,159.057L472.308,160.137L472.727,161.171L473.332,161.419L474.031,161.531L474.962,163.016L475.148,163.489L474.45,167.224L471.516,165.806L468.722,164.209L467.511,163.601L464.298,162.251L463.786,161.779L463.413,161.171L462.016,160.339L459.222,160.204L458.151,160.227L457.732,160.362L457.825,160.812L457.825,161.711L457.127,161.981L455.404,161.396L453.821,161.194L452.47,160.632L450.654,160.317L450.468,160.047L450.608,159.619L450.561,159.215L450.142,159.08L449.304,159.147L448.512,159.529L447.86,160.002L446.929,161.239L446.417,161.711L444.833,161.914L444.181,161.801L443.576,161.486L441.76,159.215L441.155,158.72L440.503,158.315L439.851,158.135L439.245,158.495L438.873,159.192L438.733,160.024L438.547,160.519L437.755,161.846L437.15,162.656L436.917,162.521L437.243,161.239L437.243,160.519L436.824,159.754L436.591,158.967L439.618,155.257L440.735,154.357L445.532,154.065L448.372,154.245L449.956,154.155L450.98,153.885L451.865,153.998L452.051,154.74L452.61,155.279L453.355,155.234L454.705,154.672L455.916,153.773L456.615,153.391L457.36,153.323L458.105,153.391L458.85,153.593ZM423.413,157.236L425.555,158.247L426.02,158.9L426.44,159.687L426.859,160.137L427.324,160.474L428.163,161.171L428.395,162.206L428.209,164.299L427.231,164.479L426.346,164.794L424.484,166.009L423.552,166.234L422.575,166.324L421.876,166.639L421.178,166.774L419.361,166.099L417.592,165.311L415.077,163.939L414.612,163.601L414.193,162.881L413.028,161.554L412.749,160.699L412.656,158.315L412.935,157.753L413.447,157.46L415.124,158.023L416.241,157.438L419.455,156.943L422.761,156.988ZM398.36,233.43L398.267,234.59L398.546,234.863L399.012,235.022L400.642,234.226L400.968,234.385L401.294,234.726L401.294,235.795L400.642,236.659L399.058,236.727L398.826,236.978L398.826,237.501L398.965,238.024L399.338,238.434L399.804,239.185L400.223,240.892L399.338,241.575L398.872,242.896L397.289,244.126L395.566,246.155L394.216,247.204L393.005,248.412L391.934,249.233L390.63,249.53L388.674,249.69L386.066,251.173L384.576,251.812L383.133,251.858L381.829,251.378L381.317,250.83L381.41,250.123L381.875,249.484L382.434,248.982L382.76,248.321L381.223,247.477L381.13,246.861L381.689,245.152L382.108,243.42L382.667,242.236L384.809,240.118L386.113,239.071L386.905,238.639L387.091,239.094L387.603,239.64L387.929,239.708L388.162,239.595L390.071,239.777L390.537,239.595L391.282,238.752L391.748,238.297L392.073,237.296L392.167,236.659L393.843,236.204L394.774,235.704L395.566,234.976L397.941,233.771ZM525.44,191.223L525.347,191.72L525.3,192.645L525.533,193.503L524.974,194.384L525.487,195.671L525.58,196.325L525.533,197.251L525.393,197.658L525.021,198.878L524.602,199.307L524.322,199.42L523.996,199.782L521.482,199.375L520.364,198.539L519.386,197.635L519.2,197.251L518.036,196.213L517.756,195.851L517.756,195.287L518.688,195.129L519.666,195.151L519.619,194.654L520.224,192.848L518.688,191.697L518.408,191.223L518.967,190.885L520.178,191.291L521.668,189.283L522.134,188.854L522.32,187.726L523.158,187.591L523.764,187.726L524.136,188.426L524.276,189.035L524.136,189.576L524.835,189.87ZM522.693,200.776L522.506,201.702L522.273,202.719L521.109,203.872L520.364,205.636L519.945,206.066L518.362,206.857L516.965,205.885L516.546,205.048L517.151,201.16L517.756,201.296L518.176,201.273L518.269,201.002L517.384,200.572L517.198,198.358L517.244,197.5L517.943,197.319L518.781,197.974L519.899,199.149L521.156,200.053ZM574.428,224.664L571.355,226.389L567.303,226.093L565.86,226.048L563.485,226.479L562.973,226.139L563.438,224.528L565.347,220.218L567.629,216.411L568.561,215.436L569.911,214.508L571.355,213.76L574.568,212.99L577.455,213.149L577.874,213.443L579.131,214.712L579.969,215.708L580.295,217.136L579.038,219.561L577.688,221.873L575.406,223.688ZM605.953,151.053L605.953,151.098L605.953,151.974L605.953,153.548L605.953,156.179L605.953,158.81L606,161.464L606,164.096L606,166.729L606,169.362L606,171.996L606,174.631L606,177.267L606,179.903L606,182.54L606,185.178L606,187.839L606,190.479L606,193.119L606,195.761L606,198.403L606,199.533L605.581,200.911L604.696,202.991L604.556,204.664L605.255,205.953L606,206.812L606,208.984L606,211.655L606,214.304L606,216.954L606,219.606L606,222.259L606,224.913L606,227.569L606,230.226L606,232.885L606,235.545L606,235.727L605.348,235.295L603.532,233.839L601.949,232.157L600.878,230.612L599.714,229.204L594.684,225.027L593.427,223.643L593.148,223.28L593.287,222.917L593.846,222.191L594.871,220.105L593.8,221.397L592.542,222.418L590.68,222.486L588.864,222.735L587.141,223.348L585.418,223.575L584.579,223.257L584.067,222.486L583.788,221.692L583.648,220.876L582.95,222.214L581.506,222.962L579.597,224.528L579.038,224.21L578.712,223.597L578.572,222.985L578.945,222.327L579.224,221.624L579.597,219.969L580.482,218.971L581.04,217.068L581.413,216.388L581.599,215.708L581.087,214.938L580.249,214.666L579.643,214.213L578.945,212.923L578.526,212.47L577.781,211.949L577.175,211.315L577.827,210.862L578.712,210.681L579.411,210.704L580.668,210.998L581.273,210.998L582.717,210.523L581.925,210.681L581.087,210.659L578.433,209.821L576.803,208.961L575.266,207.219L575.266,206.88L576.337,206.563L578.712,206.202L577.967,205.32L576.896,204.551L576.523,203.172L575.825,202.313L574.242,200.934L573.171,199.488L572.286,196.574L571.355,194.361L571.587,193.571L572.379,193.006L571.168,192.939L570.097,192.51L570.656,191.449L571.913,190.817L570.749,190.975L569.678,191.291L569.166,191.336L568.654,191.246L568.374,190.817L568.328,190.208L568.467,189.125L568.281,188.087L567.303,187.591L566.512,186.847L566.046,186.554L565.441,186.576L564.882,186.08L564.416,185.358L558.549,182.224L558.176,181.323L557.664,181.729L557.105,181.909L556.453,181.39L555.708,181.052L554.963,181.097L554.265,180.827L553.52,180.669L552.728,180.647L549.655,179.678L546.721,178.145L544.346,177.492L542.902,176.636L541.366,175.938L537.966,175.262L534.52,174.811L533.263,174.789L532.239,174.947L531.214,174.901L525.533,171.591L524.555,170.083L524.648,169.205L524.928,168.462L527.256,168.259L525.58,168.057L524.928,168.147L523.577,168.755L522.832,168.8L521.808,168.394L520.83,167.899L519.2,168.349L518.408,167.584L518.082,166.796L517.663,166.414L517.058,166.459L516.266,166.751L515.428,166.706L514.916,166.144L514.543,165.424L513.985,164.906L513.286,164.524L512.168,163.579L511.61,162.319L511.656,160.114L511.843,159.305L512.96,158.023L513.705,156.808L512.774,156.673L511.889,157.236L511.517,157.798L511.377,158.495L511.284,160.812L510.585,161.486L509.561,161.441L509.84,162.791L509.421,164.074L508.21,165.581L508.117,166.279L508.303,167.021L508.024,167.742L506.068,169.858L505.416,169.97L503.926,169.948L502.436,170.285L501.738,169.79L501.132,169.16L500.713,168.394L500.108,166.819L499.642,165.221L501.132,163.241L500.62,161.441L499.642,159.912L497.081,157.798L494.427,155.774L493.216,155.369L491.214,155.189L490.608,154.987L490.003,154.245L489.537,153.368L490.748,152.986L492.89,151.952L494.101,152.019L497.36,152.559L498.338,153.076L499.27,153.368L501.505,151.682L503.274,149.457L504.392,148.985L505.323,148.827L506.255,149.03L508.164,149.794L509.654,150.154L510.725,150.243L511.284,150.918L511.889,151.232L512.029,150.198L512.588,148.985L513.612,148.603L514.171,148.535L514.543,148.221L514.45,147.097L513.053,146.962L513.845,145.996L514.497,145.524L514.73,145.052L514.776,144.468L512.029,145.591L509.142,146.063L507.465,145.951L505.742,145.928L502.343,146.67L501.086,146.647L498.059,146.355L496.382,145.973L495.125,146.265L493.868,146.288L492.564,145.434L491.493,144.355L490.934,143.591L490.189,143.03L489.863,142.288L489.072,139.457L488.978,137.458L487.721,137.413L486.417,137.211L480.783,135.302L480.084,135.773L479.293,136.02L478.501,136.11L477.709,135.998L476.918,135.706L476.964,135.189L477.57,133.887L478.128,133.415L478.92,133.033L479.432,132.359L480.27,130.293L480.317,129.597L480.224,128.878L480.27,128.339L480.783,128.07L482.925,127.396L487.349,126.385L488.466,125.779L489.397,124.813L490.515,124.23L490.981,123.623L491.54,123.152L494.985,121.872L496.476,121.782L497.966,121.917L500.993,122.68L503.833,123.893L506.301,125.51L508.955,126.677L512.215,126.857L513.845,126.745L515.428,126.902L516.08,127.239L517.198,128.227L516.872,128.878L516.685,130.226L517.291,131.528L518.222,132.831L518.967,134.223L519.107,134.897L518.827,136.357L518.595,137.054L517.663,138.244L517.151,139.547L517.477,141.142L517.663,142.738L517.617,144.221L517.803,145.681L518.269,147.142L520.457,151.188L521.715,153.93L522.134,152.401L522.041,150.693L522.46,150.086L523.112,149.749L523.903,150.109L524.09,150.783L524.183,152.289L524.835,155.234L525.719,155.369L526.697,154.919L526.837,155.819L526.79,157.483L527.256,158.81L527.629,159.327L529.212,160.407L529.91,160.609L531.959,160.879L533.496,160.947L534.986,160.564L535.964,159.574L536.802,158.517L539.829,156.044L540.667,154.852L541.505,153.053L541.831,152.649L544.765,150.693L545.138,149.996L545.557,148.67L546.209,147.367L546.674,146.692L549.561,146.063L552.542,145.704L555.522,144.513L556.779,143.479L556.872,142.805L556.22,141.614L556.174,141.097L556.872,140.581L559.48,139.075L562.553,137.525L565.021,136.47L566.372,136.47L567.629,137.413L568.933,138.177L575.918,140.446L577.036,141.142L578.014,142.086L579.411,142.738L580.947,143.052L582.391,143.659L583.695,144.445L586.675,145.883L590.68,147.659L591.658,147.771L595.383,147.681L596.035,148.018L596.64,148.49L597.199,148.603L601.436,148.917L602.088,149.254L602.694,149.726L603.066,151.008ZM579.085,226.184L578.433,226.343L575.22,225.957L574.847,225.413L574.8,225.14L575.546,224.596L576.244,223.688L577.362,223.37L577.827,223.37L579.131,225.503ZM98.053,90.384L98.798,91.44L98.937,92.136L98.425,92.922L98.239,94.136L96.702,95.079L95.398,94.855L94.979,94.518L94.141,92.675L94.234,91.125L94.746,90.518L95.957,90.608L97.214,89.754ZM107.366,104.468L106.76,104.872L106.062,104.244L105.457,103.368L105.177,102.447L104.898,100.92L104.805,99.841L105.177,99.213L105.41,99.235L106.481,99.864L107.18,100.965L107.599,101.301L107.645,102.312L107.412,103.48ZM108.204,98.404L108.297,100.066L107.366,99.617L106.574,98.965L105.41,98.471L103.92,98.314L102.849,97.887L102.104,97.123L102.104,96.764L102.15,96.472L102.383,96.247L107.925,97.752ZM115.142,107.612L114.91,108.106L114.397,107.747L111.883,107.186L111.045,107.141L108.856,106.512L108.204,106.197L107.738,105.771L107.878,104.985L108.204,104.513L108.39,103.188L108.949,102.649L110.02,103.637L111.231,104.491L111.929,104.872L114.071,105.726L114.816,106.153ZM116.959,106.018L116.539,106.4L115.888,106.31L115.236,105.861L114.304,105.075L113.326,104.378L112.022,103.929L111.231,103.817L110.951,103.637L111.231,102.29L112.069,102.2L114.77,103.458L115.655,104.154ZM118.449,110.262L117.005,110.352L116.586,110.172L116.772,108.96L117.191,108.219L117.843,108.241L118.588,109.341ZM120.591,108.69L120.358,108.847L119.24,107.208L119.52,106.265L119.799,106.018L120.404,106.602L120.87,107.208L121.243,107.927ZM128.041,101.998L128.88,102.559L129.532,102.2L129.485,102.671L129.345,103.143L128.554,104.468L127.25,104.176L126.924,103.75L126.831,103.413L127.017,103.21L127.157,102.559L127.715,102.559ZM135.306,101.548L135.352,102.514L136.097,102.986L136.284,103.705L136.144,104.85L135.492,106.175L135.166,106.512L134.235,106.242L133.955,105.816L133.816,105.456L133.955,105.209L133.257,104.895L133.722,104.401L133.397,103.682L131.534,104.131L130.975,104.154L130.882,103.345L130.975,103.008L132.419,101.998L133.257,101.796L134.188,102.02ZM137.774,119.559L138.146,119.761L138.612,119.087L139.497,120.008L140.009,120.479L140.707,120.929L140.009,120.951L139.73,121.378L139.543,121.467L136.796,119.985L135.026,120.457L133.862,120.03L133.49,119.716L134.142,118.908L134.747,117.044L135.958,117.515L136.237,118.099L136.144,118.256L136.936,118.616ZM133.862,121.602L135.073,122.86L135.352,123.309L134.747,124.005L134.281,124.993L134.002,125.195L133.071,124.836L132.419,125.801L132,124.252L131.068,123.264L131.627,122.276L131.86,122.186L132.139,122.231L132.419,122.478ZM124.316,121.782L122.64,122.231L120.73,121.894L120.963,121.131L121.895,120.21L122.686,120.255L124.13,120.861L124.689,121.378ZM201.57,132.539L199.009,133.864L198.403,133.797L197.938,133.325L198.217,130.787L198.543,130.024L200.359,129.934L201.43,130.315L201.989,130.72L202.222,131.573L202.129,132.09ZM255.075,209.414L254.795,209.618L252.607,209.504L251.21,210.568L250.232,210.885L246.693,210.885L246.274,210.749L245.948,210.749L245.762,210.976L244.644,210.817L241.058,209.867L240.593,209.007L241.151,208.056L242.409,206.744L245.016,206.473L256.751,206.382L258.008,207.536L258.148,207.898L255.587,208.69ZM528.234,131.708L527.629,131.955L526.93,131.685L526.232,130.697L526.464,129.934L527.256,129.417L527.955,129.934L528.141,130.607L528.653,130.652ZM428.442,123.691L427.65,124.027L426.766,124.005L426.579,122.635L426.859,120.884L427.697,120.592L428.954,120.951L428.488,121.4L428.861,122.343ZM432.54,121.4L434.03,123.331L433.052,125.173L433.75,126.206L435.613,126.251L436.079,126.632L436.405,127.104L436.591,127.733L436.125,128.249L435.054,128.698L433.844,128.047L433.518,127.418L433.285,127.194L431.655,127.665L431.189,127.71L430.91,126.835L431.282,125.599L430.165,125.038L429.094,123.758L429.047,123.219L429.466,122.343L429.42,121.625L430.025,121.557L431.096,122.523L431.608,121.625L432.028,121.243ZM501.877,193.751L500.853,194.88L501.831,192.239L502.017,190.908L502.948,190.095L504.299,186.057L504.625,186.17L505.09,186.554L504.392,189.509L502.483,191.585ZM500.341,193.097L499.549,194.338L499.037,193.909L498.711,193.887L498.525,193.165L498.711,191.63L498.059,189.915L498.944,189.937L499.176,190.456L499.456,190.637L500.294,192.284ZM441.713,164.839L441.387,165.311L440.642,165.626L439.99,165.604L440.223,165.131L440.037,164.884L439.571,164.996L438.826,165.356L437.895,166.099L437.29,165.739L437.196,165.154L437.243,164.906L438.361,163.894L439.711,163.714L441.574,162.746L442.412,162.791L442.226,163.399L441.946,163.849L441.76,164.299ZM422.854,65.062L422.342,65.332L421.504,65.242L421.41,64.566L422.249,63.396L422.807,62.135L422.202,61.82L421.643,61.031L421.597,60.108L422.109,58.396L422.807,58.531L423.459,59.275L423.739,60.671L424.204,61.73L423.273,63.171ZM407.86,72.803L407.534,73.208L405.95,72.488L406.043,71.34L405.857,70.778L405.438,70.17L405.252,69.585L405.438,68.955L406.369,69.765L406.928,71.048L407.673,72.285ZM475.195,225.254L474.077,225.662L474.822,224.641L477.244,222.282L478.082,222.713L479.246,222.803L477.523,223.87L475.753,224.301ZM461.923,220.49L461.178,221.692L460.34,221.624L458.757,220.014L458.85,218.881L458.99,218.518L459.595,218.405L461.597,218.745L462.016,219.651ZM435.893,222.395L438.128,222.917L439.432,222.849L439.711,223.325L438.454,224.437L435.846,223.575L435.38,222.667ZM468.582,139.143L468.769,139.907L469.514,140.626L469.281,141.726L468.955,141.884L469.141,142.401L469.467,142.782L468.862,143.052L468.396,142.917L467.697,143.277L467.232,143.771L465.742,143.973L465.229,143.524L462.575,142.985L460.852,141.794L460.619,141.434L463.926,140.041L465.416,139.66L466.626,139.682L468.163,139.165ZM106.621,188.245L105.55,188.313L103.594,186.711L103.268,186.215L103.827,185.742L104.432,185.787L106.667,186.802L107.086,187.298ZM81.475,158.472L81.987,160.362L80.45,159.057L80.497,158.158L80.264,157.573L79.333,156.831L78.634,155.931L78.308,153.773L78.541,153.323L79.147,153.301L81.847,156.134L82.034,156.606L81.987,157.618L81.615,157.933ZM78.634,152.739L77.703,153.795L76.166,153.773L75.887,153.121L75.933,151.547L75.561,151.053L75.561,150.85L75.84,149.951L76.12,149.749L78.588,151.952ZM73.931,147.591L74.024,147.928L71.929,146.805L70.904,146.49L70.02,145.232L70.252,144.647L70.299,143.816L70.439,143.479L71.091,143.367L71.929,143.973L72.534,145.456L73.605,146.827ZM56.05,124.14L55.258,124.746L54.094,124.162L54.513,123.331L54.699,122.186L55.398,121.265L55.63,120.21L54.28,117.291L54.932,117.178L55.491,117.493L56.376,119.446L57.167,120.614L56.841,122.186ZM30.252,86.743L29.414,86.855L28.668,86.586L28.017,85.844L24.524,83.686L23.453,83.664L22.708,83.102L21.777,82.922L20.799,81.483L20.566,80.696L21.311,80.337L21.73,79.55L22.894,79.887L24.198,81.281L25.548,81.798L25.921,82.068L26.573,82.832L29.646,84.743L29.972,85.372L30.205,86.024ZM361.107,187.726L360.269,188.065L358.732,186.576L358.08,185.358L358.22,184.659L358.685,184.073L358.918,183.915L358.825,183.284L359.43,182.968L360.129,183.013L360.548,183.87L361.06,184.096L361.34,184.907ZM376.241,132.427L376.52,133.235L376.055,133.931L376.567,135.257L377.871,133.505L379.128,133.28L379.826,133.572L380.292,133.909L380.572,134.583L380.106,135.998L379.268,136.672L378.243,136.784L377.731,135.953L377.032,135.863L376.567,137.683L376.334,137.952L375.729,138.177L375.17,137.683L375.077,137.413L375.868,136.582L375.449,134.156L374.844,134.605L373.261,136.829L372.05,137.817L371.677,137.301L371.025,135.796L371.305,133.864L372.283,132.561L373.121,132.651L375.542,132.247ZM358.778,122.545L359.337,123.107L359.011,123.78L358.592,123.623L357.381,123.623L356.962,123.668L356.404,124.072L356.078,124.072L356.31,123.466L357.288,122.545L357.94,122.68ZM341.502,198.9L340.99,201.07L340.711,200.324L340.617,198.336L340.292,197.364L340.524,196.258L340.478,193.413L340.85,192.104L341.595,193.774L341.782,194.632ZM274.866,207.672L273.841,207.898L272.863,207.423L272.863,206.812L273.096,206.247L274.586,205.953L275.378,205.953L276.216,206.36L276.775,206.767L277.054,207.242L275.471,207.265ZM286.88,167.359L284.132,169.768L283.713,169.137L283.946,166.684L283.154,165.176L283.248,164.029L283.76,162.026L284.458,160.497L286.042,159.462L286.414,159.35L286.321,161.216L286.647,161.914L286.74,162.521L286.6,163.039L286.88,165.401L287.066,165.986L286.693,166.729ZM372.842,259.237L371.631,259.26L371.258,259.123L371.119,257.957L371.491,257.317L374.285,256.471L375.356,255.694L376.939,254.095L377.871,253.684L378.104,253.501L378.29,253.524L378.429,254.757L378.849,255.466L378.895,255.854L377.498,256.471L376.287,257.888L373.54,258.826ZM390.118,225.39L389.326,226.207L388.814,227.614L388.302,228.046L387.277,228.296L386.625,226.888L385.508,226.956L386.066,225.73L386.579,225.254L387.324,225.254L387.65,225.753L387.836,225.844L389.512,223.756L389.838,223.733L390.118,223.824L390.351,224.074ZM385.461,224.664L383.645,225.004L382.527,226.638L381.643,226.616L381.13,227.342L381.037,227.66L381.084,227.932L380.991,228.228L380.618,228.5L379.826,228.046L379.081,228.614L378.802,228.773L377.731,228.091L376.753,228.137L376.474,228.023L377.684,226.843L379.361,225.708L379.64,225.299L378.988,225.186L378.616,225.027L378.523,224.754L379.594,224.596L380.339,224.55L380.898,224.913L381.27,224.891L383.505,223.575L384.437,223.892L385.088,224.21ZM377.591,225.73L377.312,226.298L373.819,226.252L373.913,225.503L374.89,224.686L375.216,224.414L376.287,224.165L377.824,224.618ZM525.021,202.177L524.322,202.313L523.95,201.228L524.555,200.957L525.207,201.612ZM120.265,103.705L120.358,104.423L119.473,104.244L118.868,103.413L119.38,102.829L119.706,102.604L120.032,103.413ZM125.48,106.916L125.573,107.298L124.409,106.534L124.363,105.995L124.502,105.748L125.201,106.332ZM130.835,106.489L129.997,106.871L128.973,105.681L129.019,105.411L129.112,105.209L129.299,105.075L129.904,105.681L130.649,105.906ZM136.656,116.505L136.749,116.819L136.144,116.46L135.771,116.235L135.539,116.056L134.188,114.282L134.747,114.394L136.237,115.943ZM157.285,76.424L157.239,77.301L156.354,76.784L156.168,75.794L156.494,75.479L157.099,75.659ZM150.486,80.224L149.928,80.269L149.788,79.887L149.835,79.235L149.741,78.695L149.602,78.313L149.602,77.638L150.114,77.976L150.486,78.291L150.952,78.515L151.278,78.65L151.464,78.763L151.138,79.707ZM190.953,79.685L190.301,80.359L189.649,79.932L190.673,78.56L190.906,78.47ZM191.791,138.222L190.301,138.783L189.835,137.548L190.813,137.188L191.837,137.503ZM172.652,154.807L172.14,155.122L171.814,154.807L171.721,154.447L171.954,153.998L172.652,153.953L172.978,154.088ZM165.062,156.179L164.829,156.426L164.13,156.291L163.618,155.931L163.292,155.594L163.199,155.234L163.898,154.785L165.388,155.234ZM262.386,209.799L262.199,210.297L261.548,210.183L260.942,209.323L261.222,209.097L261.594,209.007L262.013,209.097ZM240.499,192.578L240.22,193.029L239.009,193.006L238.777,192.465L239.568,191.539L240.127,191.472L240.593,191.81ZM143.921,203.352L143.129,203.646L142.524,203.398L142.244,203.036L143.129,202.132L143.595,201.906L144.014,201.838L144.247,202.335ZM41.521,90.428L41.428,90.721L40.077,89.35L38.587,88.586L39.192,88.406L40.45,88.608L40.962,88.811L41.428,89.485ZM16.002,41.959L15.723,42.32L14.978,42.139L14.14,40.966L14.419,40.74L14.978,40.853L15.956,41.124L16.049,41.575ZM381.223,139.323L380.339,139.412L379.733,139.031L379.78,137.121L380.339,136.717L380.572,136.784L380.758,137.346L380.991,137.862L381.456,138.334ZM376.613,170.533L375.356,172.086L374.471,171.996L373.4,170.983L373.121,169.858L373.074,169.452L373.819,168.822L376.241,169.025L376.66,169.587ZM384.437,142.58L384.669,143.097L383.878,143.075L383.552,142.108L383.598,141.569ZM375.449,140.783L374.518,141.839L374.425,141.277L374.611,140.76L374.844,140.401L375.263,140.199ZM327.765,230.771L327.253,230.908L326.741,230.726L326.927,229.545L326.648,228.773L327.16,228.137L327.299,227.047L327.532,226.706L327.812,227.047L327.998,227.274L328.231,227.387L328.836,227.41L328.976,227.887L328.929,228.318L328.696,228.795L327.998,229.318L327.486,229.885ZM322.689,224.21L322.131,224.233L322.037,223.711L322.224,223.166L322.783,222.917L323.015,222.917L323.388,223.416L323.481,223.665L323.108,224.006ZM277.892,231.158L277.52,231.612L276.495,230.817L276.216,230.453L277.008,229.931L277.287,229.863L277.939,230.408ZM304.249,63.306L305.506,63.328L307.322,63.081L307.742,64.319L307.835,64.792L305.413,65.444L303.97,63.914ZM304.389,74.827L304.249,75.255L303.131,74.197L302.805,73.455L302.945,72.848L304.109,72.803L304.668,73.185ZM387.091,194.677L386.951,195.309L386.485,194.587L386.066,194.248L386.113,193.481L386.718,193.751ZM381.596,185.561L381.549,186.869L381.037,186.802L380.618,186.351L380.478,185.9L380.525,185.561L380.758,185.268ZM344.715,209.595L343.365,209.663L342.992,209.55L342.853,208.283L344.343,208.826L344.808,208.871ZM303.085,225.889L302.759,225.912L302.2,225.662L302.433,225.118L302.107,224.21L302.2,223.484L302.945,223.076L304.482,223.03L304.528,223.575ZM288.416,162.116L287.951,164.344L287.159,163.084L288.044,161.576L288.463,161.284ZM430.025,107.051L429.606,107.455L429.187,107.32L428.908,106.781L429.001,106.377L429.373,106.13L429.792,106.31ZM520.597,144.76L520.224,144.94L520.085,144.378L520.318,143.636L520.55,143.501L520.83,143.546L521.202,143.816ZM510.213,172.244L510.865,172.942L509.328,172.402L507.139,171.253L507,170.488L508.862,171.659ZM475.753,127.329L475.428,128.002L474.776,128.429L469.234,129.237L469.7,128.766L469.933,128.294L470.305,128.047L470.864,128.115L471.143,127.957L471.376,127.912L471.702,127.98L472.261,127.778L473.379,127.912L474.543,127.8L474.45,127.171ZM472.121,124.117L471.376,124.14L470.072,123.578L470.817,123.084L471.33,122.972L471.749,122.68L471.982,122.68L472.54,122.927L472.866,123.354ZM458.198,119.693L457.639,119.738L457.173,118.975L455.87,118.144L455.078,116.684L458.105,119.087ZM431.096,117.358L431.05,117.74L430.631,117.201L430.351,117.066L430.631,115.674L430.817,115.427L431.05,116.393ZM430.677,108.96L430.211,109.117L430.072,109.072L429.932,108.533L430.165,107.657L430.724,107.657L430.957,107.792L431.003,108.443ZM429.094,127.373L428.954,127.643L427.604,127.306L427.231,127.126L427.93,125.285L428.582,125.33L429.14,127.082ZM447.488,163.174L447.488,163.736L447.394,163.916L446.696,163.714L446.184,163.736L445.718,162.746L445.858,162.521L446.789,162.791L447.115,162.904ZM445.439,163.691L443.203,164.366L443.716,163.106L443.995,162.769L445.113,163.106ZM421.597,67.11L421.643,67.673L420.852,66.412L420.526,64.949L421.178,65.467L421.876,66.57ZM423.32,68.505L423.087,68.64L422.621,68.303L422.342,67.92L422.388,67.538L422.714,67.335L423.366,67.92L423.366,68.258ZM404.646,82.967L404.507,83.259L403.994,81.731L404.414,80.966L404.972,81.258L405.112,81.528L404.6,82.248ZM489.677,210.681L489.491,211.315L488.932,210.976L488.42,210.229L487.628,210.116L487.023,209.934L486.697,209.572L488.885,209.414ZM446.836,210.432L446.23,210.772L445.299,210.093L445.02,209.799L445.625,209.142L446.277,208.939L446.696,209.233L446.882,209.527L446.789,209.844ZM430.631,216.184L429.839,216.478L430.072,215.504L430.025,214.734L431.376,214.983L431.376,215.595L431.236,215.821ZM378.849,251.264L377.684,251.721L377.684,250.762L378.616,249.53L379.407,249.119L379.873,249.621L379.92,249.826L378.709,250.283ZM359.058,255.054L358.406,255.214L357.009,254.826L356.729,254.598L357.894,253.958L358.825,253.067L359.896,252.976L360.548,253.159L360.315,254.232ZM526.371,200.685L526.045,200.776L526.045,200.143L526.418,199.578L526.79,199.262L527.209,199.239ZM524.509,204.777L524.276,204.98L523.95,204.573L523.903,204.302L524.369,203.578L524.788,203.172L525.3,203.149L525.161,203.737ZM437.988,155.279L437.336,156.359L436.219,156.314L436.032,156.156L437.383,155.482ZM433.052,160.182L433.378,160.744L432.074,160.384L431.515,159.822L432.074,159.484L432.4,159.395ZM373.214,228.228L372.795,229L372.05,228.773L372.236,228.023L372.609,227.592L373.633,226.956L374.658,226.843L375.263,227.07L375.449,227.319L373.866,227.569Z" fill="url(#islandGrad)" stroke="#1c3327" stroke-width="0.4"/>
+          <!-- SUMATRA — detailed -->
+          <path id="reg-sumatra" class="reg"
+            d="M22 148 Q35 120 55 105 Q75 90 100 86 Q125 82 148 90 Q165 97 172 112 Q178 128 170 142 Q160 157 142 164 Q120 170 95 166 Q68 160 45 150 Q30 143 22 148Z"
+            fill="#111a22" stroke="#1e2e3a" stroke-width="1.5"
+            data-region="Sumatra" data-desc="Island of adventures — from Medan's bold flavours to Palembang's ancient history. Breathtaking lakes, ancient temples, and jungle that goes on forever. Every corner holds a story waiting to be told." data-youtube=""/>
+          <!-- Bangka Belitung highlight -->
+          <ellipse id="reg-belitung" class="reg" cx="188" cy="155" rx="14" ry="10"
+            fill="#1a2a1a" stroke="#3db8ff" stroke-width="1.5" stroke-dasharray="3,2"
+            data-region="Belitung Island" data-desc="Crystal-clear turquoise water, giant granite boulders, and the most peaceful white-sand beaches I've ever set foot on. Belitung is the kind of place that makes you forget what a deadline is." data-youtube="9aef24vIxVY"/>
+          <text x="188" y="178" font-family="monospace" font-size="7" fill="#3db8ff" text-anchor="middle" opacity="0.8">Belitung ✦</text>
 
-          <!-- CITY PINS -->
-          <g class="map-pin" data-pin="belitung" transform="translate(178.2,152.9)">
-            <circle class="map-pin-pulse" r="5" fill="#ff3d6e" opacity="0.5"/>
-            <circle class="map-pin-dot" r="5" filter="url(#pinGlow)"/>
-          </g>
-          <text x="178.2" y="145" font-family="monospace" font-size="8" fill="#ff5d85" text-anchor="middle">Belitung ✦</text>
+          <!-- JAVA — detailed -->
+          <path id="reg-java" class="reg"
+            d="M188 170 Q215 158 255 157 Q285 156 318 163 Q338 170 342 182 Q340 196 322 202 Q295 208 260 206 Q225 204 200 196 Q184 189 188 170Z"
+            fill="#111a22" stroke="#1e2e3a" stroke-width="1.5"
+            data-region="Java" data-desc="Home. Jakarta, Bandung, Yogyakarta, Surabaya — the island that shaped everything I am. Familiar, chaotic, full of energy, and always worth coming back to. Some places just feel like breathing." data-youtube=""/>
 
-          <g class="map-pin" data-pin="bandung" transform="translate(174.5,207.0)">
-            <circle class="map-pin-pulse" r="5" fill="#ff3d6e" opacity="0.5"/>
-            <circle class="map-pin-dot" r="5" filter="url(#pinGlow)"/>
-          </g>
-          <text x="174.5" y="222" font-family="monospace" font-size="8" fill="#ff5d85" text-anchor="middle">Bandung ✦</text>
+          <!-- KALIMANTAN — detailed -->
+          <path id="reg-kalimantan" class="reg"
+            d="M298 80 Q328 60 368 54 Q405 50 432 65 Q450 78 448 100 Q445 122 425 136 Q400 148 368 146 Q335 143 312 128 Q292 112 298 80Z"
+            fill="#111a22" stroke="#1e2e3a" stroke-width="1.5"
+            data-region="Kalimantan" data-desc="The lungs of Borneo — vast ancient rainforests, orangutans in the wild, and rivers that seem to have no end. A place that puts everything into perspective and reminds you how small we really are." data-youtube=""/>
 
-          <g class="map-pin" data-pin="labuanbajo" transform="translate(333.3,227.5)">
-            <circle class="map-pin-pulse" r="5" fill="#ff3d6e" opacity="0.5"/>
-            <circle class="map-pin-dot" r="5" filter="url(#pinGlow)"/>
-          </g>
-          <text x="333.3" y="242" font-family="monospace" font-size="8" fill="#ff5d85" text-anchor="middle">Labuan Bajo ✦</text>
+          <!-- SULAWESI — detailed (K-shape with two peninsulas) -->
+          <path id="reg-sulawesi" class="reg"
+            d="M438 68 Q450 56 464 60 Q474 66 472 82 Q469 98 458 110 Q447 118 438 108 Q430 95 438 68Z"
+            fill="#111a22" stroke="#1e2e3a" stroke-width="1.5"
+            data-region="Sulawesi" data-desc="Shaped like a letter K drawn by someone in a rush — Sulawesi is unexpected at every turn. Toraja's cliffside graves, Bunaken's underwater paradise, and Makassar's seafront energy. Never dull." data-youtube=""/>
+          <path d="M460 96 Q476 88 486 100 Q490 115 480 124 Q468 130 460 120Z" class="reg" fill="#111a22" stroke="#1e2e3a" stroke-width="1.5"
+            data-region="Sulawesi" data-desc="Shaped like a letter K drawn by someone in a rush — Sulawesi is unexpected at every turn. Toraja's cliffside graves, Bunaken's underwater paradise, and Makassar's seafront energy. Never dull." data-youtube=""/>
+
+          <!-- BALI + LOMBOK -->
+          <path id="reg-bali" class="reg"
+            d="M346 205 Q365 198 388 200 Q408 204 416 216 Q412 230 394 235 Q373 237 355 232 Q340 226 346 205Z"
+            fill="#111a22" stroke="#1e2e3a" stroke-width="1.5"
+            data-region="Bali & Nusa Tenggara" data-desc="Bali needs no introduction. But the islands beyond — Lombok, Flores, Komodo with its dragons — those catch you completely off guard and never let go. The further east you go, the wilder it gets." data-youtube=""/>
+
+          <!-- MALUKU -->
+          <path id="reg-maluku" class="reg"
+            d="M490 128 Q502 118 514 124 Q520 136 512 146 Q500 152 490 144Z"
+            fill="#111a22" stroke="#1e2e3a" stroke-width="1.5"
+            data-region="Maluku" data-desc="The original Spice Islands — nutmeg, cloves, and crystal-clear waters that look like they were designed by someone who wanted to make the rest of the world feel inadequate." data-youtube=""/>
+
+          <!-- PAPUA -->
+          <path id="reg-papua" class="reg"
+            d="M518 90 Q545 72 576 74 Q600 80 612 102 Q614 124 596 138 Q574 150 550 146 Q526 140 518 118Z"
+            fill="#111a22" stroke="#1e2e3a" stroke-width="1.5"
+            data-region="Papua" data-desc="The final frontier. Remote, raw, and unlike anywhere else on Earth — Raja Ampat's underwater world, the Baliem Valley's ancient tribes, mountains that touch the clouds. On the bucket list. Definitely." data-youtube=""/>
+
+          <!-- Island labels -->
+          <text x="95" y="128" font-family="monospace" font-size="9" fill="#3a5566" text-anchor="middle">Sumatra</text>
+          <text x="262" y="183" font-family="monospace" font-size="9" fill="#3a5566" text-anchor="middle">Java</text>
+          <text x="372" y="100" font-family="monospace" font-size="9" fill="#3a5566" text-anchor="middle">Kalimantan</text>
+          <text x="456" y="84" font-family="monospace" font-size="8" fill="#3a5566" text-anchor="middle">Sulawesi</text>
+          <text x="382" y="220" font-family="monospace" font-size="8" fill="#3a5566" text-anchor="middle">Bali &amp; NTT</text>
+          <text x="503" y="135" font-family="monospace" font-size="7" fill="#3a5566" text-anchor="middle">Maluku</text>
+          <text x="566" y="108" font-family="monospace" font-size="9" fill="#3a5566" text-anchor="middle">Papua</text>
         </svg>
       </div>
 
@@ -1149,11 +959,18 @@
       <div id="travel-region-info" style="flex:1;min-width:200px;padding:22px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;display:none;">
         <div id="travel-region-name" style="font-family:'Syne',sans-serif;font-weight:700;font-size:20px;color:var(--accent);margin-bottom:10px;"></div>
         <div id="travel-region-desc" style="font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:14px;"></div>
-        <div id="travel-region-videos" style="display:none;flex-direction:column;gap:8px;margin-top:8px;"></div>
+        <div id="travel-region-yt" style="display:none;margin-top:12px;">
+          <a id="travel-yt-link" href="#" target="_blank" rel="noopener"
+            style="display:inline-flex;align-items:center;gap:8px;background:#ff0000;color:#fff;text-decoration:none;font-family:'DM Mono',monospace;font-size:12px;padding:8px 16px;border-radius:6px;transition:opacity .2s;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.4 3.5-6.4 3.5z"/></svg>
+            Watch on YouTube
+          </a>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:var(--text-dim);font-family:'DM Mono',monospace;">← click another region</div>
       </div>
     </div>
     <div class="hobby-panel-caption" style="margin-top:20px;">
-      Finding new places is my way of staying grounded. Every trip — big or small — is a short escape that somehow makes everything else make sense. Travelling reminds me that the world is bigger than any one problem, and that the best stress relief is a new horizon you haven't seen before. It brings me back to myself, every single time. So, can you suggest what's next?
+      Finding new places is my way of staying grounded. Every trip — big or small — is a short escape that somehow makes everything else make sense. Travelling reminds me that the world is bigger than any one problem, and that the best stress relief is a new horizon you haven't seen before. It brings me back to myself, every single time.
     </div>
   </div>
 
@@ -1163,7 +980,7 @@
     <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;">
       <div style="flex:1;min-width:200px;">
         <div class="hobby-panel-caption" style="margin:0 0 24px;">
-          Writing is my way of stepping into worlds I get to create, explore, and fully inhabit. It's where I can slow down, feel deeply, and find a kind of peace that nothing else quite replicates. Some people meditate. I write. It's the one place where I'm completely in control of how the story goes — and that's everything. But it's not just fiction — I enjoy non-fiction and scientific writing just as much, from research papers to technical documentation.
+          Writing is my way of stepping into worlds I get to create, explore, and fully inhabit. It's where I can slow down, feel deeply, and find a kind of peace that nothing else quite replicates. Some people meditate. I write. It's the one place where I'm completely in control of how the story goes — and that's everything.
         </div>
         <a href="https://www.amazon.com/Fragments-Belonging-Sola-Gracia-ebook/dp/B0H2PR267S/ref=sr_1_1?crid=ZM72P9SFQN7O&dib=eyJ2IjoiMSJ9.Xx-qHcUw8iCljA6fVmYv1G3Bh87i0k-TkAmjkJ7vBMuk3ZWgbxYvX_3DK2ircHss.CFmpSpv2W3rsFTUzNVUBF1G1VlHV8sh3tzSPdN9pqWA&dib_tag=se&keywords=fragments+of+belonging&qid=1783567455&sprefix=fragments+of+belonging,aps,584&sr=8-1"
            target="_blank" rel="noopener"
@@ -1172,23 +989,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h12a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm0 2v16h12V4H6zm2 2h8v2H8V6zm0 4h8v2H8v-2zm0 4h5v2H8v-2z"/></svg>
           Read <em style="margin-left:2px">Fragments of Belonging</em> on Amazon
         </a>
-        <br>
-        <a href="https://digilib.itb.ac.id/gdl/view_data/pengembangan-sensor-elektrokimia-untuk-deteksi-biomarker-penyakit-jantung-cardiac-troponin-i/sola?rows=1&per_page=1"
-           target="_blank" rel="noopener"
-           style="display:inline-flex;align-items:center;gap:10px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-weight:600;font-size:14px;padding:12px 24px;border-radius:8px;transition:background .2s,color .2s;margin-bottom:12px;"
-           onmouseenter="this.style.background='var(--accent)';this.style.color='var(--bg)'" onmouseleave="this.style.background='transparent';this.style.color='var(--accent)'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.2L19.5 8 12 11.8 4.5 8 12 4.2zM4 9.7l7 3.5v7.1l-7-3.5V9.7zm9 10.6v-7.1l7-3.5v7.1l-7 3.5z"/></svg>
-          Read my scientific publication on ITB Digilib
-        </a>
-        <br>
-        <a href="https://medium.com/@solagraciarnt"
-           target="_blank" rel="noopener"
-           style="display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border);color:var(--text-muted);text-decoration:none;font-weight:600;font-size:14px;padding:12px 24px;border-radius:8px;transition:border-color .2s,color .2s;margin-bottom:12px;"
-           onmouseenter="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseleave="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42zM24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75c.66 0 1.19 2.57 1.19 5.75z"/></svg>
-          Read on Medium
-        </a>
-        <div style="font-size:12px;color:var(--text-dim);font-family:'DM Mono',monospace;margin-top:4px;">@solagraciarnt</div>
+        <div style="font-size:12px;color:var(--text-dim);font-family:'DM Mono',monospace;margin-top:4px;">Also on Medium → <a href="https://medium.com/@solagraciarnt" target="_blank" rel="noopener" style="color:var(--accent)">@solagraciarnt</a></div>
       </div>
     </div>
   </div>
@@ -1197,36 +998,7 @@
   <div class="hobby-panel" id="panel-social">
     <button class="hobby-panel-close" onclick="toggleHobby('social')">✕ close</button>
     <div class="hobby-panel-caption">
-      As an <strong style="color:var(--accent)">ENTJ</strong>, socialising isn't optional — it's how I recharge, grow, and stay connected to what actually matters. I genuinely love meeting new people, building real connections, and putting in the effort to keep them. It doesn't matter if it's through campus life, a work project, or a shared hobby — for me, relationships are the whole point. The more people I meet, the more I learn. And I'm never done learning. I also love socialising across generations — young or old, I enjoy connecting with people regardless of age — and I love capturing those moments through vlogging and editing them into something worth keeping.
-    </div>
-    <div style="margin-top:20px;">
-      <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text-dim);margin-bottom:10px;">During my internship in the Quality Control division:</div>
-      <a href="https://youtu.be/BGdl4pFTKcE?si=wM4JCfP2qPXAWLrz" target="_blank" rel="noopener" class="yt-btn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.4 3.5-6.4 3.5z"/></svg>
-        Watch on YouTube
-      </a>
-    </div>
-    <div class="hobby-panel-photos" id="social-photos" style="margin-top:24px;">
-      <figure class="photo-figure">
-        <img src="jamming.jpg" alt="Jamming with ITBJazz">
-        <figcaption>Jamming with ITBJazz, my music organisation on campus</figcaption>
-      </figure>
-      <figure class="photo-figure">
-        <img src="naik_gunung.jpg" alt="Hiking with friends">
-        <figcaption>Chasing fresh air — hiking around Bandung with friends whenever we need a reset</figcaption>
-      </figure>
-      <figure class="photo-figure">
-        <img src="hosvis.JPG" alt="Hospital visit">
-        <figcaption>A hospital visit with friends</figcaption>
-      </figure>
-      <figure class="photo-figure">
-        <img src="ini_temen2_kelas.JPG" alt="Classmates">
-        <figcaption>My classmates</figcaption>
-      </figure>
-      <figure class="photo-figure">
-        <img src="wishuda.JPG" alt="Graduation batch photo">
-        <figcaption>Me and my batchmates on graduation day</figcaption>
-      </figure>
+      As an <strong style="color:var(--accent)">ENTJ</strong>, socialising isn't optional — it's how I recharge, grow, and stay connected to what actually matters. I genuinely love meeting new people, building real connections, and putting in the effort to keep them. It doesn't matter if it's through campus life, a work project, or a shared hobby — for me, relationships are the whole point. The more people I meet, the more I learn. And I'm never done learning.
     </div>
   </div>
 
@@ -1236,7 +1008,7 @@
 <section id="contact">
   <div class="contact-inner">
     <div class="contact-big">Let's build<br>something <span>great.</span></div>
-    <p class="contact-sub">Still learning, always building, and excited for what's next.</p>
+    <p class="contact-sub">Open to full-time roles, internships, research collaborations, and freelance projects — especially in medical devices, IoT, and AI.</p>
     <div class="contact-links">
       <a href="mailto:solagraciarnt@gmail.com" class="contact-link">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -1244,7 +1016,7 @@
         </svg>
         Email
       </a>
-      <a href="https://www.linkedin.com/in/solagraciaranita/" target="_blank" rel="noopener" class="contact-link">
+      <a href="https://www.linkedin.com/in/sola-gracia" target="_blank" rel="noopener" class="contact-link">
         <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17">
           <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
         </svg>
@@ -1326,6 +1098,16 @@ const skillMap={
   troubleshoot:  {expIds:['exp-ids'],projIds:[]},
   leadership:    {expIds:['exp-hme','exp-wisuda'],projIds:[]},
   pm:            {expIds:['exp-wisuda','exp-hme'],projIds:[]},
+  colab:         {expIds:['exp-research'],projIds:['proj-biosensor','proj-optic','proj-shakantara']},
+  c:             {expIds:[],projIds:[]},
+  cpp:           {expIds:[],projIds:[]},
+  haskell:       {expIds:[],projIds:[]},
+  tensorflow:    {expIds:[],projIds:['proj-shakantara','proj-optic']},
+  pytorch:       {expIds:[],projIds:['proj-shakantara','proj-optic']},
+  opencv:        {expIds:[],projIds:['proj-shakantara']},
+  numpy:         {expIds:['exp-research'],projIds:['proj-biosensor','proj-optic']},
+  pandas:        {expIds:['exp-research'],projIds:['proj-biosensor']},
+  matplotlib:    {expIds:['exp-research'],projIds:['proj-biosensor','proj-optic']},
   writing:       {expIds:['exp-research'],projIds:['proj-biosensor'],medium:'https://medium.com/@solagraciarnt'},
   bahasa:        {expIds:[],projIds:[]},
   english:       {expIds:[],projIds:[]},
@@ -1387,86 +1169,47 @@ document.querySelectorAll('.skill-tag').forEach(tag=>{
 })();
 
 // INDONESIA MAP
-function ytButtonHTML(url,label){
-  return '<a href="'+url+'" target="_blank" rel="noopener" class="yt-btn">'
-    +'<svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1C4.5 20.5 12 20.5 12 20.5s7.5 0 9.4-.6a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.8 15.5V8.5l6.4 3.5-6.4 3.5z"/></svg>'
-    +label+'</a>';
-}
-
-var travelInfo=document.getElementById('travel-region-info');
-var travelVideos=document.getElementById('travel-region-videos');
-
-// Subtle hover glow on the landmass itself
-var landmass=document.getElementById('indonesia-landmass');
-if(landmass){
-  landmass.style.transition='fill .2s';
-  landmass.addEventListener('mouseenter',function(){ this.style.fill='#5a9a72'; });
-  landmass.addEventListener('mouseleave',function(){ this.style.fill='url(#islandGrad)'; });
-}
-
-// CITY PINS (points with dedicated stories & video links)
-var pinData={
-  belitung: {
-    name: '📍 Belitung Island',
-    desc: "Crystal-clear turquoise water, giant granite boulders, and the most peaceful white-sand beaches I've ever set foot on. Belitung is the kind of place that makes you forget what a deadline is.",
-    videos: [
-      {url:'https://youtu.be/9aef24vIxVY', label:'Watch on YouTube'}
-    ]
-  },
-  bandung: {
-    name: '📍 Bandung, Jawa Barat',
-    desc: 'My second home — where I spent years studying and where I still go for a quick reset whenever I need cooler air, good coffee, and old friends. Here are a few of my favorite moments in Bandung.',
-    videos: [
-      {url:'https://youtu.be/9Z-bujlYh2w?si=BBHi-4qcB3Szynep', label:'Watch on YouTube'},
-      {url:'https://youtu.be/lzMNawZMgro?si=J6-niFn88-fZeIla', label:'Watch on YouTube'}
-    ]
-  },
-  labuanbajo: {
-    name: '📍 Labuan Bajo, NTT',
-    desc: "The gateway to Komodo Island and one of the best diving spots in Indonesia — the sunset over the harbor never fails to leave me in awe. One of the trips I remember most.",
-    videos: [
-      {url:'https://youtu.be/FB964J4dvfA?si=gTXfQQg_LChVl-9B', label:'Watch on YouTube'}
-    ]
-  }
-};
-
-document.querySelectorAll('.map-pin').forEach(function(pin){
-  pin.addEventListener('click',function(e){
-    e.stopPropagation();
-    var d=pinData[this.dataset.pin];
-    if(!d) return;
-
-    document.getElementById('travel-region-name').textContent=d.name;
-    document.getElementById('travel-region-desc').textContent=d.desc;
-
-    travelVideos.innerHTML='';
-    d.videos.forEach(function(v,i){
-      travelVideos.innerHTML+=ytButtonHTML(v.url, d.videos.length>1 ? 'Watch video '+(i+1) : v.label);
+document.querySelectorAll('#indonesia-map .reg').forEach(function(path){
+  path.style.transition='fill .2s, stroke .2s';
+  path.addEventListener('mouseenter',function(){
+    if(!this.classList.contains('reg-active')){
+      this.style.fill='rgba(61,184,255,0.15)';
+      this.style.stroke='#3db8ff';
+    }
+  });
+  path.addEventListener('mouseleave',function(){
+    if(!this.classList.contains('reg-active')){
+      this.style.fill= this.id==='reg-belitung' ? '#1a2a1a' : '#111a22';
+      this.style.stroke= this.id==='reg-belitung' ? '#3db8ff' : '#1e2e3a';
+    }
+  });
+  path.addEventListener('click',function(){
+    document.querySelectorAll('#indonesia-map .reg').forEach(function(p){
+      p.classList.remove('reg-active');
+      p.style.fill= p.id==='reg-belitung' ? '#1a2a1a' : '#111a22';
+      p.style.stroke= p.id==='reg-belitung' ? '#3db8ff' : '#1e2e3a';
     });
-    travelVideos.style.display='flex';
-
-    travelInfo.style.display='block';
-    travelInfo.style.animation='none';
-    void travelInfo.offsetWidth;
-    travelInfo.style.animation='fadeUp .3s ease both';
+    this.classList.add('reg-active');
+    this.style.fill='rgba(61,184,255,0.28)';
+    this.style.stroke='#3db8ff';
+    var info=document.getElementById('travel-region-info');
+    document.getElementById('travel-region-name').textContent=this.dataset.region;
+    document.getElementById('travel-region-desc').textContent=this.dataset.desc;
+    // YouTube button
+    var ytWrap=document.getElementById('travel-region-yt');
+    var ytLink=document.getElementById('travel-yt-link');
+    if(this.dataset.youtube){
+      ytLink.href='https://youtu.be/'+this.dataset.youtube;
+      ytWrap.style.display='block';
+    } else {
+      ytWrap.style.display='none';
+    }
+    info.style.display='block';
+    info.style.animation='none';
+    void info.offsetWidth;
+    info.style.animation='fadeUp .3s ease both';
   });
 });
-
-// GENERIC REVEAL (independent tap-to-expand panels — photos, projects, experience)
-function toggleReveal(key){
-  const trigger=document.getElementById('trigger-'+key);
-  const panel=document.getElementById('reveal-'+key);
-  if(!panel) return;
-  const isOpen=panel.classList.contains('show');
-  if(isOpen){
-    panel.classList.remove('show');
-    if(trigger) trigger.classList.remove('open');
-  } else {
-    panel.classList.add('show');
-    if(trigger) trigger.classList.add('open');
-    setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
-  }
-}
 
 // HOBBY EXPAND
 function toggleHobby(key){
